@@ -3,13 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/yechi/AndroidStudioProjects/MyApplication/cookit-app/app/src/main/res/drawable/et_style.xml" value="0.2703125" />
         <entry key="..\:/Users/yechi/AndroidStudioProjects/MyApplication/cookit-app/app/src/main/res/drawable/ic_save_24.xml" value="0.2703125" />
         <entry key="..\:/Users/yechi/AndroidStudioProjects/MyApplication/cookit-app/app/src/main/res/drawable/icon_buttons_border.xml" value="0.2703125" />
         <entry key="..\:/Users/yechi/AndroidStudioProjects/MyApplication/cookit-app/app/src/main/res/drawable/ratingbar_theme.xml" value="0.2703125" />
         <entry key="..\:/Users/yechi/AndroidStudioProjects/MyApplication/cookit-app/app/src/main/res/drawable/recipe_image_border.xml" value="0.2703125" />
         <entry key="..\:/Users/yechi/AndroidStudioProjects/MyApplication/cookit-app/app/src/main/res/layout/activity_login.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/yechi/AndroidStudioProjects/MyApplication/cookit-app/app/src/main/res/layout/activity_main.xml" value="0.24010416666666667" />
-        <entry key="..\:/Users/yechi/AndroidStudioProjects/MyApplication/cookit-app/app/src/main/res/layout/activity_sign_up.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/yechi/AndroidStudioProjects/MyApplication/cookit-app/app/src/main/res/layout/activity_sign_up.xml" value="0.264" />
         <entry key="..\:/Users/yechi/AndroidStudioProjects/MyApplication/cookit-app/app/src/main/res/layout/progressbar.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/yechi/AndroidStudioProjects/MyApplication/cookit-app/app/src/main/res/layout/rate_fragment.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/yechi/AndroidStudioProjects/MyApplication/cookit-app/app/src/main/res/layout/recipe_card.xml" value="0.264" />
