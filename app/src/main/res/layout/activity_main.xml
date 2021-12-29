@@ -7,15 +7,4 @@
     tools:context=".MainActivity"
     android:orientation="vertical">
 
-    <include
-        layout="@layout/rate_fragment" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        tools:ignore="MissingConstraints"
-        android:text="sjdgc"
-        android:backgroundTint="@color/teal_700"/>
-
 </LinearLayout>
