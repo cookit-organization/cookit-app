@@ -1,9 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.LoginActivity">
+    tools:context=".ui.LoginActivity"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="30dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/log_in"
+        android:textSize="30sp"
+        android:textColor="@color/teal_700"
+        android:textStyle="bold"
+        android:gravity="center"/>
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:drawableStart="@drawable/ic_user"
+        android:hint="@string/username"
+        android:background="@drawable/et_style"/>
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:drawableStart="@drawable/ic_password"
+        android:hint="@string/password"
+        android:background="@drawable/et_style"/>
+
+    <include
+        android:id="@+id/progress_bar"
+        layout="@layout/progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:visibility="gone"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/teal_700"
+        android:textColor="@color/black"
+        android:text="@string/submit"
+        android:layout_marginTop="20dp"/>
+
+</LinearLayout>

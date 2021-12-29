@@ -2,6 +2,7 @@
     <string name="app_name">cookit-app</string>
     <string name="for_example">for example</string>
     <string name="sign_up">sign up</string>
+    <string name="log_in">log in</string>
     <string name="name">name</string>
     <string name="email">email</string>
     <string name="username">username</string>
