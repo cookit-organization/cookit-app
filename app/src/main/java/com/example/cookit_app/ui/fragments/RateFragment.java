@@ -1,4 +1,4 @@
-package com.example.cookit_app;
+package com.example.cookit_app.ui.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,7 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
-public class rateFragment extends DialogFragment {
+import com.example.cookit_app.R;
+
+public class RateFragment extends DialogFragment {
 
     private RatingBar stars;
 

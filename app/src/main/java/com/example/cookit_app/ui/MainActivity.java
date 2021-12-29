@@ -1,7 +1,9 @@
-package com.example.cookit_app;
+package com.example.cookit_app.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.cookit_app.R;
 
 public class MainActivity extends AppCompatActivity {
 
