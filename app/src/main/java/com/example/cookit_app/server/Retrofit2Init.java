@@ -10,7 +10,7 @@ public class Retrofit2Init {
     public final RetrofitInterface retrofitInterface;
 
     public Retrofit2Init() {
-        @SuppressLint("AuthLeak") String BASE_URL = "http://10.0.2.2:3000/"; //todo make sure its port 3000
+        @SuppressLint("AuthLeak") String BASE_URL = "http://10.0.2.2:3000/"; //make sure its port 3000
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(new GsonBuilder().setLenient().create()))

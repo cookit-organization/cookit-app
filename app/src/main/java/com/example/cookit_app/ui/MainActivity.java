@@ -12,5 +12,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //TODO: check if there is sharedPreferences of his User Id if, not take him to login page
+
+        //TODO: 3 fragments of the app (explore, add, home)
+
     }
 }

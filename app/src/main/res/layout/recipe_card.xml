@@ -17,8 +17,7 @@
         android:layout_height="60dp"
         android:layout_below="@id/recipe_name_tv"
         android:layout_alignParentEnd="true"
-        android:background="@drawable/icon_buttons_border"
-        android:src="@drawable/saved" />
+         android:src="@drawable/saved" />
 
     <TextView
         android:id="@+id/recipe_name_tv"

@@ -7,4 +7,5 @@
     tools:context=".ui.MainActivity"
     android:orientation="vertical">
 
+<!--  make 3 fragments of the app (explore, add, home)-->
 </LinearLayout>
