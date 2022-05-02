@@ -1,4 +1,4 @@
-package com.example.cookit_app.server.scheme;
+package com.example.cookit_app.server.responseObjects;
 
 import java.util.List;
 

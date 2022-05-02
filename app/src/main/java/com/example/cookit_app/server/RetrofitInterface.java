@@ -1,7 +1,6 @@
 package com.example.cookit_app.server;
 
-import com.example.cookit_app.server.scheme.Recipe;
-import com.example.cookit_app.server.scheme.User;
+import com.example.cookit_app.server.responseObjects.User;
 import java.util.HashMap;
 import retrofit2.Call;
 import retrofit2.http.DELETE;

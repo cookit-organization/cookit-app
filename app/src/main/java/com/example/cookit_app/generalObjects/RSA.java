@@ -22,6 +22,8 @@ import javax.crypto.NoSuchPaddingException;
 @RequiresApi(api = Build.VERSION_CODES.O)
 public class RSA {
 
+    //add here publicKey and privateKey (privateKey must be hidden)
+
     //this is how to use the encryption and the decryption
     //taken from https://www.devglan.com/java8/rsa-encryption-decryption-java
 
