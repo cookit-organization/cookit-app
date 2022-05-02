@@ -42,7 +42,7 @@ public class User {
             return bio;
         }
 
-        public double getRate() {
+        public Number getRate() {
             return rate;
         }
     }
