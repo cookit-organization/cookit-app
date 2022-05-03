@@ -34,7 +34,6 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-
         EditText name_et = findViewById(R.id.name);
         EditText email_et = findViewById(R.id.email);
         EditText username_et = findViewById(R.id.username);
@@ -47,7 +46,6 @@ public class SignUpActivity extends AppCompatActivity {
         String email = email_et.getText().toString();
         String username = username_et.getText().toString();
         String password = password_et.getText().toString();
-
 
         try {
             //RSA encryption username, password and email
@@ -87,6 +85,5 @@ public class SignUpActivity extends AppCompatActivity {
         } catch (BadPaddingException | IllegalBlockSizeException | NoSuchPaddingException | InvalidKeyException | NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-
     }
 }
