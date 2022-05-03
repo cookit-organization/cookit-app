@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //TODO: check if there is sharedPreferences of his User Id if, not take him to login page
-        //TODO: 3 fragments of the app (explore, add, home)
+        //3 fragments of the app (explore, add, home)
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(item -> {

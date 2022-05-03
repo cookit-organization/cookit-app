@@ -47,22 +47,22 @@ public class SignUpActivity extends AppCompatActivity {
         String username = username_et.getText().toString();
         String password = password_et.getText().toString();
 
-        try {
+//        try {
             //RSA encryption username, password and email
-            String encryptedUsername = Base64.getEncoder().encodeToString(RSA.encrypt(username, /*TODO ADD A REAL KEY*/"publicKey"));
-            Log.d("tesTag", encryptedUsername);
-            String encryptedPassword = Base64.getEncoder().encodeToString(RSA.encrypt(password, /*TODO ADD A REAL KEY*/"publicKey"));
-            Log.d("tesTag", encryptedPassword);
-            String encryptedEmail = Base64.getEncoder().encodeToString(RSA.encrypt(email, /*TODO ADD A REAL KEY*/"publicKey"));
-            Log.d("tesTag", encryptedEmail);
+//            String encryptedUsername = Base64.getEncoder().encodeToString(RSA.encrypt(username, /*TODO ADD A REAL KEY*/"publicKey"));
+//            Log.d("tesTag", encryptedUsername);
+//            String encryptedPassword = Base64.getEncoder().encodeToString(RSA.encrypt(password, /*TODO ADD A REAL KEY*/"publicKey"));
+//            Log.d("tesTag", encryptedPassword);
+//            String encryptedEmail = Base64.getEncoder().encodeToString(RSA.encrypt(email, /*TODO ADD A REAL KEY*/"publicKey"));
+//            Log.d("tesTag", encryptedEmail);
 
             //sending the request
             HashMap<String, String> userData = new HashMap<>();
 
             userData.put("name", name);
-            userData.put("email", encryptedEmail);
-            userData.put("username", encryptedUsername);
-            userData.put("password", encryptedPassword);
+            userData.put("email", email);
+            userData.put("username", username);
+            userData.put("password", password);
 
             Call<Void> call = new Retrofit2Init().retrofitInterface.newUser(userData);
 
@@ -82,8 +82,8 @@ public class SignUpActivity extends AppCompatActivity {
                 }
             });
 
-        } catch (BadPaddingException | IllegalBlockSizeException | NoSuchPaddingException | InvalidKeyException | NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
+//        } catch (BadPaddingException | IllegalBlockSizeException | NoSuchPaddingException | InvalidKeyException | NoSuchAlgorithmException e) {
+//            e.printStackTrace();
+//        }
     }
 }
