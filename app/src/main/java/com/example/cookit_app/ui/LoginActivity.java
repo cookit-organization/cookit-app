@@ -46,14 +46,14 @@ public class LoginActivity extends AppCompatActivity {
             if(!username.isEmpty() && !password.isEmpty()){
 
                 //encrypting username and password with RSA
-                try{
-                    String encryptedUsername = Base64.getEncoder().encodeToString(RSA.encrypt(username, /*TODO ADD A REAL KEY*/"publicKey"));
-                    Log.d("tesTag", encryptedUsername);
-                    String encryptedPassword = Base64.getEncoder().encodeToString(RSA.encrypt(username, /*TODO ADD A REAL KEY*/"publicKey"));
-                    Log.d("tesTag", encryptedPassword);
+//                try{
+//                    String encryptedUsername = Base64.getEncoder().encodeToString(RSA.encrypt(username, /*TODO ADD A REAL KEY*/"publicKey"));
+//                    Log.d("tesTag", encryptedUsername);
+//                    String encryptedPassword = Base64.getEncoder().encodeToString(RSA.encrypt(username, /*TODO ADD A REAL KEY*/"publicKey"));
+//                    Log.d("tesTag", encryptedPassword);
 
-                     //sending the request
-                    Call<Void> call = new Retrofit2Init().retrofitInterface.logInUser(encryptedUsername, encryptedPassword);
+                    //sending the request
+                    Call<Void> call = new Retrofit2Init().retrofitInterface.logInUser(username, password); //change back to encrypted after testing
                     call.enqueue(new Callback<Void>() {
                         @Override
                         public void onResponse(Call<Void> call, Response<Void> response) {
@@ -66,15 +66,15 @@ public class LoginActivity extends AppCompatActivity {
 
                         @Override
                         public void onFailure(Call<Void> call, Throwable t) {
-                            Toast.makeText(getBaseContext(), "Something went wrong try again later.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getBaseContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
 
-                } catch (NoSuchAlgorithmException e) {
-                    System.err.println(e.getMessage());
-                } catch (NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException | BadPaddingException e) {
-                    e.printStackTrace();
-                }
+//                } catch (NoSuchAlgorithmException e) {
+//                    System.err.println(e.getMessage());
+//                } catch (NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException | BadPaddingException e) {
+//                    e.printStackTrace();
+//                }
 
             }else if(username.isEmpty()){
                 username_et.setError("Field is empty");

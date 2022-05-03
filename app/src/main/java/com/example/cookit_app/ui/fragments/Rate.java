@@ -1,31 +1,31 @@
 package com.example.cookit_app.ui.fragments;
-
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.RatingBar;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
-import com.example.cookit_app.R;
+import android.widget.Toast;
 
-public class Rate extends DialogFragment {
+public class Rate {
 
-    private RatingBar stars;
+    private final RatingBar ratingBar;
 
-    @Nullable @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.rate_fragment, container, false);
-
+    public Rate(RatingBar ratingBar) {
+        this.ratingBar = ratingBar;
         //TODO: check current rateBar's rate from database (take from recipe's data "average_rate")
 
-        stars = view.findViewById(R.id.rating);
-        stars.setOnRatingBarChangeListener((ratingBar, rating, byUser) -> {
-            stars.setRating(rating);
-            //TODO: make sure to change in database
+        ratingBar.setOnRatingBarChangeListener((rb, rating, byUser) -> {
+            Toast.makeText(rb.getContext(), String.valueOf(ratingBar.getRating()), Toast.LENGTH_SHORT).show();
+            updateDB();
         });
+    }
 
-        return view;
+    public void updateDB(){
+        //TODO: make sure to change in database
+        //getRatingBar().getRating()
+    }
+
+    public RatingBar getRatingBar() {
+        return ratingBar;
+    }
+
+    public void setRate(float ratingBar) {
+        this.ratingBar.setRating(ratingBar);
     }
 }

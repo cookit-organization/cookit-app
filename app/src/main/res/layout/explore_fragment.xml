@@ -10,4 +10,11 @@
         android:textSize="30sp"
         android:layout_centerInParent="true"/>
 
+    <include
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30sp"
+        layout="@layout/rate_fragment" />
+
 </RelativeLayout>

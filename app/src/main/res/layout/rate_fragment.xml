@@ -5,15 +5,15 @@
     android:layout_height="wrap_content">
 
     <RatingBar
-        android:id="@+id/rating"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/rate_bar"
         style="?android:attr/ratingBarStyleIndicator"
-        android:numStars="5"
-        android:rating="3.5"
-        android:stepSize="0.1"
-        android:isIndicator="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:progressBackgroundTint="@color/purple_200"
         android:progressTint="@color/teal_700"
-        android:progressBackgroundTint="@color/purple_200"/>
+        android:isIndicator="false"
+        android:numStars="5"
+        android:rating="2.5"
+        android:stepSize="0.1"/>
 
 </LinearLayout>
