@@ -1,6 +1,5 @@
 package com.example.cookit_app.generalObjects;
 
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -25,5 +24,6 @@ public class SharedPreferencesObject {
 //        spo.getPreferences().edit().putBoolean("haha", false); --> put
 //        spo.getPreferences().edit().apply(); --> update
 //        spo.getPreferences().getBoolean("haha", true); --> get
+// In order to save the data you must to update, therefore you need to use spo.getPreferences().edit().apply();
 }
 

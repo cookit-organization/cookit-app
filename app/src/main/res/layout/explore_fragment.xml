@@ -3,14 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Explore Fragment"
-        android:textSize="30sp"
-        android:layout_centerInParent="true"/>
-
 <!--   search -->
 <!--   gridlayout to make 2 in every line -->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </RelativeLayout>
