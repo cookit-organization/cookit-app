@@ -1,7 +1,5 @@
 package com.example.cookit_app.generalObjects;
 
-import android.graphics.drawable.Drawable;
-
 public class RecipeCard {
 
     private int recipe_image, save_button;

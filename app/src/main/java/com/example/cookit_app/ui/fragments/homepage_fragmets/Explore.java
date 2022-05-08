@@ -1,25 +1,20 @@
 package com.example.cookit_app.ui.fragments.homepage_fragmets;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.graphics.drawable.Drawable;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridLayout;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.cookit_app.R;
 import com.example.cookit_app.generalObjects.RecyclerViewAdapter;
 import com.example.cookit_app.generalObjects.RecipeCard;
-
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class Explore extends Fragment {
 
@@ -31,7 +26,9 @@ public class Explore extends Fragment {
         View view = inflater.inflate(R.layout.explore_fragment, container, false);
 
         recyclerView = view.findViewById(R.id.rv_container);
+//        view.setBackgroundColor(Color.RED);
 
+        recipeCards = new ArrayList<>();
         getRecipes();
         recyclerViewAdapter();
 
@@ -46,8 +43,8 @@ public class Explore extends Fragment {
 
     private void recyclerViewAdapter(){
 
-//        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 4));
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         recyclerView.setAdapter(new RecyclerViewAdapter(getContext(), recipeCards));
     }
 }

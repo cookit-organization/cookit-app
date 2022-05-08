@@ -33,6 +33,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         RecipeCard recipeCard = list.get(position);
         //set actions for each recipe card here !
+        holder.recipe_name.setText(recipeCard.getRecipe_name());
+        holder.author_name.setText(recipeCard.getAuthor_name());
     }
 
     public interface ItemClickListener {
