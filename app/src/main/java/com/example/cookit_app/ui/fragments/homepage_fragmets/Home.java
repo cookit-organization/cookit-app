@@ -7,26 +7,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextSwitcher;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cookit_app.R;
-import com.example.cookit_app.generalObjects.RecipeCard;
 import com.example.cookit_app.generalObjects.RecyclerViewAdapter;
 import com.example.cookit_app.generalObjects.SharedPreferencesObject;
+import com.example.cookit_app.server.responseObjects.Recipe;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Home extends Fragment{
 
-    List<RecipeCard> recipeCards;
+    List<Recipe> recipeCards;
 
     @SuppressLint("SetTextI18n") @Nullable @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -53,7 +52,7 @@ public class Home extends Fragment{
         recipeCards = new ArrayList<>();
 
         //get info from sharedPreferences
-        SharedPreferencesObject spo = new SharedPreferencesObject(getContext());
+        SharedPreferencesObject spo = new SharedPreferencesObject(requireContext());
 
 
         LinearLayout ll = view.findViewById(R.id.wanted_categories_container);
@@ -64,18 +63,13 @@ public class Home extends Fragment{
             textView.setTextSize(30);
             textView.setTextColor(Color.BLACK);
 
-            View v = new View(getContext());
-            v.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 2));
-            v.setBackgroundColor(Color.BLACK);
-
-            RecyclerView rv = new RecyclerView(getContext());
+            RecyclerView rv = new RecyclerView(requireContext());
             rv.setLayoutParams(new
                     RecyclerView.LayoutParams(
                     RecyclerView.LayoutParams.MATCH_PARENT,
                     RecyclerView.LayoutParams.WRAP_CONTENT
             ));
 
-            ll.addView(v);
             ll.addView(textView);
             ll.addView(rv);
 
@@ -86,13 +80,7 @@ public class Home extends Fragment{
     }
 
     private void getRecipes(){
-        for(int i = 0; i < 10; i++){
-            recipeCards.add(new RecipeCard(
-                    R.drawable.default_image,
-                    R.drawable.ic_saved,
-                    "recipe name",
-                    "author name"));
-        }
+      //get recipes from database
     }
 
     private void recyclerViewAdapter(RecyclerView recyclerView){

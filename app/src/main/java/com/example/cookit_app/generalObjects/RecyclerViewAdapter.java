@@ -10,28 +10,30 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.cookit_app.R;
+import com.example.cookit_app.server.responseObjects.Recipe;
+
 import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
-    private final List<RecipeCard> list;
+    private final List<Recipe> list;
     private final LayoutInflater inflater;
     ItemClickListener clickListener;
 
-    public RecyclerViewAdapter(Context context, List<RecipeCard> list) {
+    public RecyclerViewAdapter(Context context, List<Recipe> list) {
         this.list = list;
         this.inflater = LayoutInflater.from(context);
     }
 
-    @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    @NonNull @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.recipe_card, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        RecipeCard recipeCard = list.get(position);
+        Recipe recipeCard = list.get(position);
         //set actions for each recipe card here !
         holder.recipe_name.setText(recipeCard.getRecipe_name());
         holder.author_name.setText(recipeCard.getAuthor_name());

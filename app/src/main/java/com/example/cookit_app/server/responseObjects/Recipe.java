@@ -4,12 +4,16 @@ import java.util.List;
 
 public class Recipe {
 
-    private String _id, author_username, recipe_name, description, image;
+    private String _id, author_name,author_username, recipe_name, description, image;
     private List<String> mealtime, tags;
     private Number average_rate, rates_number;
 
     public String get_id() {
         return _id;
+    }
+
+    public String getAuthor_name() {
+        return author_name;
     }
 
     public String getAuthor_username() {
