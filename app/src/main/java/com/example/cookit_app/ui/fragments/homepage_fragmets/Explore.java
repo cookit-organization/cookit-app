@@ -27,8 +27,6 @@ public class Explore extends Fragment {
 
         recyclerView = view.findViewById(R.id.rv_container);
         recipeCards = new ArrayList<>();
-//        view.setBackgroundColor(Color.RED);
-
 
         getRecipes();
         recyclerViewAdapter();

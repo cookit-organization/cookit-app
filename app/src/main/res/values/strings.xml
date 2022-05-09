@@ -12,4 +12,8 @@
     <string name="explore">Explore</string>
     <string name="add">Add</string>
     <string name="home">Home</string>
+    <string name="saved">saved</string>
+    <string name="my_recipes">my recipes</string>
+    <string name="recent">recent</string>
+    <string name="trending">trending</string>
 </resources>

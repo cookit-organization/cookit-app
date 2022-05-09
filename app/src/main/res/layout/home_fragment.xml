@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -41,7 +42,7 @@
 
     <include
         android:id="@+id/rate_stars"
-        layout="@layout/rate_fragment"
+        layout="@layout/include_rate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/profile_bio_tv"
@@ -53,46 +54,63 @@
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_below="@id/rate_stars"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:background="@color/purple_700" />
 
     <GridLayout
+        android:id="@+id/profile_buttons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="15dp"
         android:layout_below="@id/line"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
         android:columnCount="2"
         android:useDefaultMargins="true">
 
         <com.google.android.material.button.MaterialButton
             style="?attr/materialButtonOutlinedStyle"
-            android:text="@string/for_example"
+            android:layout_width="160dp"
+            android:text="@string/saved"
             android:textColor="@color/teal_200"
-            app:strokeColor="@color/teal_200"
-            app:icon="@drawable/ic_saved"/>
+            app:icon="@drawable/ic_saved"
+            app:strokeColor="@color/teal_200" />
 
         <com.google.android.material.button.MaterialButton
             style="?attr/materialButtonOutlinedStyle"
-            android:text="@string/for_example"
+            android:layout_width="160dp"
+            android:text="@string/my_recipes"
             android:textColor="@color/teal_200"
-            app:strokeColor="@color/teal_200"
-            app:icon="@drawable/ic_saved"/>
+            app:icon="@drawable/ic_saved"
+            app:strokeColor="@color/teal_200" />
 
         <com.google.android.material.button.MaterialButton
             style="?attr/materialButtonOutlinedStyle"
-            android:text="@string/for_example"
+            android:layout_width="160dp"
+            android:text="@string/recent"
             android:textColor="@color/teal_200"
-            app:strokeColor="@color/teal_200"
-            app:icon="@drawable/ic_saved"/>
+            app:icon="@drawable/ic_saved"
+            app:strokeColor="@color/teal_200" />
 
         <com.google.android.material.button.MaterialButton
             style="?attr/materialButtonOutlinedStyle"
-            android:text="@string/for_example"
+            android:layout_width="160dp"
+            android:text="@string/trending"
             android:textColor="@color/teal_200"
-            app:strokeColor="@color/teal_200"
-            app:icon="@drawable/ic_saved"/>
+            app:icon="@drawable/ic_saved"
+            app:strokeColor="@color/teal_200" />
 
     </GridLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/profile_buttons">
+        <!-- This LinearLayout ⤵ contains the categories the user wants-->
+        <LinearLayout
+            android:id="@+id/wanted_categories_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
 
 </RelativeLayout>

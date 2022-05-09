@@ -14,8 +14,8 @@ import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
-    private List<RecipeCard> list;
-    private LayoutInflater inflater;
+    private final List<RecipeCard> list;
+    private final LayoutInflater inflater;
     ItemClickListener clickListener;
 
     public RecyclerViewAdapter(Context context, List<RecipeCard> list) {
