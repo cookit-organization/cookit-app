@@ -14,6 +14,8 @@
         android:isIndicator="false"
         android:numStars="5"
         android:rating="2.5"
-        android:stepSize="0.1"/>
+        android:stepSize="0.5"
+        android:scaleX="0.8"
+        android:scaleY="0.8"/>
 
 </LinearLayout>

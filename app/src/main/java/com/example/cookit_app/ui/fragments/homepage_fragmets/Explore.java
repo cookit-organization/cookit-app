@@ -26,9 +26,10 @@ public class Explore extends Fragment {
         View view = inflater.inflate(R.layout.explore_fragment, container, false);
 
         recyclerView = view.findViewById(R.id.rv_container);
+        recipeCards = new ArrayList<>();
 //        view.setBackgroundColor(Color.RED);
 
-        recipeCards = new ArrayList<>();
+
         getRecipes();
         recyclerViewAdapter();
 
@@ -37,7 +38,11 @@ public class Explore extends Fragment {
 
     private void getRecipes(){
         for(int i = 0; i < 10; i++){
-            recipeCards.add(new RecipeCard( R.drawable.default_image, R.drawable.saved, "recipe name", "author name"));
+            recipeCards.add(new RecipeCard(
+                    R.drawable.default_image,
+                    R.drawable.saved,
+                    "recipe name",
+                    "author name"));
         }
     }
 
