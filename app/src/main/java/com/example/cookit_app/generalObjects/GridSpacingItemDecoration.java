@@ -2,7 +2,6 @@ package com.example.cookit_app.generalObjects;
 
 import android.graphics.Rect;
 import android.view.View;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
