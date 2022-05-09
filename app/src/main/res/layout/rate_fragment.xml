@@ -9,13 +9,14 @@
         style="?android:attr/ratingBarStyleIndicator"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:progressBackgroundTint="@color/purple_200"
+        android:progressBackgroundTint="@color/black"
         android:progressTint="@color/teal_700"
-        android:isIndicator="false"
+        android:layout_marginStart="-15dp"
+        android:isIndicator="true"
         android:numStars="5"
         android:rating="2.5"
         android:stepSize="0.5"
         android:scaleX="0.8"
         android:scaleY="0.8"/>
-
+    <!--   android:isIndicator="false" make it rateable -->
 </LinearLayout>

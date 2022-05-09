@@ -40,7 +40,7 @@ public class Explore extends Fragment {
         for(int i = 0; i < 10; i++){
             recipeCards.add(new RecipeCard(
                     R.drawable.default_image,
-                    R.drawable.saved,
+                    R.drawable.ic_saved,
                     "recipe name",
                     "author name"));
         }

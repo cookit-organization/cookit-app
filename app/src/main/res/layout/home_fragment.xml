@@ -1,15 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp">
+
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/profile_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@mipmap/ic_launcher"
+        app:strokeWidth="2dp"
+        app:strokeColor="@color/purple_700"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.circleImageView"/>
 
     <TextView
+        android:id="@+id/profile_name_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Home Fragment"
-        android:textSize="30sp"
-        android:layout_centerInParent="true"/>
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@id/profile_image"
+        android:text="@string/for_example"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
-<!--    profile  underline and 4 buttons-->
+    <TextView
+        android:id="@+id/profile_bio_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/for_example"
+        android:layout_below="@id/profile_name_tv"
+        android:layout_toEndOf="@id/profile_image"
+        android:layout_marginStart="10dp"/>
+
+    <include
+        android:id="@+id/rate_stars"
+        layout="@layout/rate_fragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profile_bio_tv"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@id/profile_image" />
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@id/rate_stars"
+        android:layout_marginTop="5dp"
+        android:background="@color/purple_700" />
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/line"
+        android:columnCount="2"
+        android:useDefaultMargins="true">
+
+        <com.google.android.material.button.MaterialButton
+            style="?attr/materialButtonOutlinedStyle"
+            android:text="@string/for_example"
+            android:textColor="@color/teal_200"
+            app:strokeColor="@color/teal_200"
+            app:icon="@drawable/ic_saved"/>
+
+        <com.google.android.material.button.MaterialButton
+            style="?attr/materialButtonOutlinedStyle"
+            android:text="@string/for_example"
+            android:textColor="@color/teal_200"
+            app:strokeColor="@color/teal_200"
+            app:icon="@drawable/ic_saved"/>
+
+        <com.google.android.material.button.MaterialButton
+            style="?attr/materialButtonOutlinedStyle"
+            android:text="@string/for_example"
+            android:textColor="@color/teal_200"
+            app:strokeColor="@color/teal_200"
+            app:icon="@drawable/ic_saved"/>
+
+        <com.google.android.material.button.MaterialButton
+            style="?attr/materialButtonOutlinedStyle"
+            android:text="@string/for_example"
+            android:textColor="@color/teal_200"
+            app:strokeColor="@color/teal_200"
+            app:icon="@drawable/ic_saved"/>
+
+    </GridLayout>
 
 </RelativeLayout>
