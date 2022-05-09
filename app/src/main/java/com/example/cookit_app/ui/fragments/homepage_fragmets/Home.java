@@ -1,5 +1,6 @@
 package com.example.cookit_app.ui.fragments.homepage_fragmets;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -27,7 +28,7 @@ public class Home extends Fragment{
 
     List<RecipeCard> recipeCards;
 
-    @Nullable @Override
+    @SuppressLint("SetTextI18n") @Nullable @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.home_fragment, container, false);
 
@@ -59,16 +60,23 @@ public class Home extends Fragment{
 
         for (int i = 0; i < 6; i++) {
             TextView textView = new TextView(getContext());
-            textView.setText("hello world " + i);
-            textView.setTextSize(20);
+            textView.setText(" hello world");
+            textView.setTextSize(30);
             textView.setTextColor(Color.BLACK);
-            ll.addView(textView);
+
+            View v = new View(getContext());
+            v.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 2));
+            v.setBackgroundColor(Color.BLACK);
+
             RecyclerView rv = new RecyclerView(getContext());
             rv.setLayoutParams(new
                     RecyclerView.LayoutParams(
                     RecyclerView.LayoutParams.MATCH_PARENT,
                     RecyclerView.LayoutParams.WRAP_CONTENT
             ));
+
+            ll.addView(v);
+            ll.addView(textView);
             ll.addView(rv);
 
             getRecipes();
