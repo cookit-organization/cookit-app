@@ -47,8 +47,12 @@ public interface RetrofitInterface {
     Call<List<Recipe>> getRandomRecipe();
 
     @GET("/recipes/recipe-by-tag")
-    Call<List<Recipe>> getRecipesByTag(@QueryMap HashMap<String, String> tags);
+    Call<List<Recipe>> getRecipesByTag(@QueryMap List<String> tags);
 
+    @GET("/recipes/recipes-by-single-tag")
+    Call<List<Recipe>> getRecipeBySingleTag(@Query("tag") String tag);
+
+    @GET("/recipes/get-recipe-by-name")
     Call<List<Recipe>> getRecipeByName(@Query("name") String name);
 
 }

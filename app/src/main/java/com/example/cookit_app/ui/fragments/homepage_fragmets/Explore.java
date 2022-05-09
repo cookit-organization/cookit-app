@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -16,10 +15,8 @@ import com.example.cookit_app.generalObjects.GridSpacingItemDecoration;
 import com.example.cookit_app.generalObjects.RecyclerViewAdapter;
 import com.example.cookit_app.server.Retrofit2Init;
 import com.example.cookit_app.server.responseObjects.Recipe;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -36,16 +33,13 @@ public class Explore extends Fragment {
         recyclerView = view.findViewById(R.id.rv_container);
         recipeCards = new ArrayList<>();
 
-        getRecipes();
-        recyclerViewAdapter();
+//        getRecipes();
+//        recyclerViewAdapter();
 
         return view;
     }
 
     private void getRecipes(){
-        for(int i = 0; i < 10; i++){
-//            recipeCards.add(new Recipe());
-        }
 
         Call<List<Recipe>> call = new Retrofit2Init().retrofitInterface.getRandomRecipe();
 
@@ -54,11 +48,13 @@ public class Explore extends Fragment {
             public void onResponse(Call<List<Recipe>> call, Response<List<Recipe>> response) {
                 if(response.isSuccessful())
                     recipeCards.addAll(response.body());
+                else
+                    Toast.makeText(requireContext(), response.message(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(Call<List<Recipe>> call, Throwable t) {
-                Toast.makeText(getContext(), "Sorry something went wrong we are checking the cause.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Sorry something went wrong. we are on it !", Toast.LENGTH_SHORT).show();
                 //TODO : only if we have time -> send error to errorsServer (a server for error handling)
             }
         });
@@ -70,6 +66,5 @@ public class Explore extends Fragment {
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, 100, false));
         recyclerView.setAdapter(new RecyclerViewAdapter(getContext(), recipeCards));
-
     }
 }

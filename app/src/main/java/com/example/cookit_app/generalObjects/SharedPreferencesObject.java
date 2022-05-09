@@ -8,6 +8,14 @@ public class SharedPreferencesObject {
 
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
+
+    //sharedPreferences names ⤵
+
+    public final String
+            isSignedUp = "is_signed_up",
+            wantedTagsList = "wanted_tags_list";
+
+
     public SharedPreferencesObject(Context context) {
 
         preferences = context.getSharedPreferences("com.example.cookit_app", Context.MODE_PRIVATE);
