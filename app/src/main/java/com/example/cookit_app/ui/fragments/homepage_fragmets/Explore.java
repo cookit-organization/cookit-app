@@ -15,6 +15,7 @@ import com.example.cookit_app.R;
 import com.example.cookit_app.generalObjects.GridSpacingItemDecoration;
 import com.example.cookit_app.generalObjects.RecyclerViewAdapter;
 import com.example.cookit_app.server.Retrofit2Init;
+import com.example.cookit_app.server.RetrofitInterface;
 import com.example.cookit_app.server.responseObjects.Recipe;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,9 +28,12 @@ public class Explore extends Fragment {
     List<Recipe> recipeCards;
     RecyclerView recyclerView;
 
+
     @SuppressLint("CommitPrefEdits") @Nullable @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.explore_fragment, container, false);
+
+        RetrofitInterface retrofitInterface = new Retrofit2Init().retrofitInterface;
 
         recyclerView = view.findViewById(R.id.rv_container);
         recipeCards = new ArrayList<>();
@@ -37,35 +41,37 @@ public class Explore extends Fragment {
         SearchView searchView = view.findViewById(R.id.search_view);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public boolean onQueryTextSubmit(String s) {
-                Toast.makeText(requireContext(), s, Toast.LENGTH_SHORT).show();
-                searchView.setQuery(null, false);
-                //set to server
-            return false;
+            public boolean onQueryTextSubmit(String search) {
+                Toast.makeText(requireContext(), search, Toast.LENGTH_SHORT).show();
+                getRecipes(retrofitInterface.getRecipeByName(search));
+                return false;
             }
             @Override
             public boolean onQueryTextChange(String s) {
                 //we can use this to get the rest of the word or
-                // to give him suggestion for recipes that has the same name
+                //to give him suggestion for recipes that has the same prefix
                 return false;
             }
         });
 
-//        getRecipes();
-//        recyclerViewAdapter();
+        //default get random recipes (by timezone)
+        if(recipeCards.isEmpty()){
+            getRecipes(retrofitInterface.getRandomRecipe());
+        }
 
         return view;
     }
 
-    private void getRecipes(){
-
-        Call<List<Recipe>> call = new Retrofit2Init().retrofitInterface.getRandomRecipe();
+    private void getRecipes(Call<List<Recipe>> call){
 
         call.enqueue(new Callback<List<Recipe>>() {
             @Override
             public void onResponse(Call<List<Recipe>> call, Response<List<Recipe>> response) {
-                if(response.isSuccessful())
+                if(response.isSuccessful()) {
                     recipeCards.addAll(response.body());
+                    recyclerViewAdapter();
+                    recipeCards.clear();
+                }
                 else
                     Toast.makeText(requireContext(), response.message(), Toast.LENGTH_SHORT).show();
             }
