@@ -3,8 +3,10 @@ package com.example.cookit_app.ui;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import com.example.cookit_app.R;
+import com.example.cookit_app.generalObjects.SharedPreferencesObject;
 import com.example.cookit_app.ui.fragments.homepage_fragmets.Add;
 import com.example.cookit_app.ui.fragments.homepage_fragmets.Explore;
 import com.example.cookit_app.ui.fragments.homepage_fragmets.Home;
@@ -17,8 +19,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //TODO: check if there is sharedPreferences of his User Id if, not take him to login page
-        //3 fragments of the app (explore, add, home)
+        SharedPreferencesObject spo = new SharedPreferencesObject(this);
+
+        if(!spo.getPreferences().getBoolean(spo.isSignedUp, false))
+            startActivity(new Intent(this, LoginActivity.class));
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(item -> {

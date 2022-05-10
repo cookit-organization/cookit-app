@@ -6,23 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import com.example.cookit_app.R;
-import com.example.cookit_app.generalObjects.RSA;
 import com.example.cookit_app.server.Retrofit2Init;
-
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -37,8 +27,11 @@ public class LoginActivity extends AppCompatActivity {
         EditText username_et = findViewById(R.id.username);
         EditText password_et = findViewById(R.id.password);
         Button submit_login = findViewById(R.id.submit_login);
+        ProgressBar progressBar = findViewById(R.id.progress_bar);
 
         submit_login.setOnClickListener(view -> {
+
+            progressBar.setVisibility(View.VISIBLE);
 
             String username = username_et.getText().toString();
             String password = password_et.getText().toString();
@@ -57,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
                     call.enqueue(new Callback<Void>() {
                         @Override
                         public void onResponse(Call<Void> call, Response<Void> response) {
+                            progressBar.setVisibility(View.GONE);
                             if(response.isSuccessful()){
                                 startActivity(new Intent(getBaseContext(), MainActivity.class));
                             }else if (response.code() == 403){
@@ -66,6 +60,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         @Override
                         public void onFailure(Call<Void> call, Throwable t) {
+                            progressBar.setVisibility(View.GONE);
                             Toast.makeText(getBaseContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
