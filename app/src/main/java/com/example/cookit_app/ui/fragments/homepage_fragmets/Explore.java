@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -32,6 +33,23 @@ public class Explore extends Fragment {
 
         recyclerView = view.findViewById(R.id.rv_container);
         recipeCards = new ArrayList<>();
+
+        SearchView searchView = view.findViewById(R.id.search_view);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                Toast.makeText(requireContext(), s, Toast.LENGTH_SHORT).show();
+                searchView.setQuery(null, false);
+                //set to server
+            return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String s) {
+                //we can use this to get the rest of the word or
+                // to give him suggestion for recipes that has the same name
+                return false;
+            }
+        });
 
 //        getRecipes();
 //        recyclerViewAdapter();

@@ -88,19 +88,18 @@ public class Home extends Fragment{
                     @Override
                     public void onFailure(Call<List<Recipe>> call, Throwable t) {
                         Toast.makeText(getContext(), "Sorry something went wrong. we are on it !", Toast.LENGTH_SHORT).show();
-                        //TODO : only if we have time -> send error to errorsServer (a server for error handling)
+                        //TODO : only if we have time -> send error to errorsServer (a server for error handling
 
-//
-//                        ShapeableImageView si = new ShapeableImageView(requireContext());
-//                        si.setLayoutParams(new LinearLayout.LayoutParams(
-//                                LinearLayout.LayoutParams.MATCH_PARENT,
-//                                LinearLayout.LayoutParams.MATCH_PARENT
-//                        ));
-//                        si.setImageResource(R.drawable.cookit_app_logo);
-//                        si.setShapeAppearanceModel(si.getShapeAppearanceModel().toBuilder().
-//                                setTopRightCorner(CornerFamily.ROUNDED,30).build());
-//                        ll.addView(si);
-//                        ll.setGravity(Gravity.CENTER_VERTICAL);
+                //                        ShapeableImageView si = new ShapeableImageView(requireContext());
+                //                        si.setLayoutParams(new LinearLayout.LayoutParams(
+                //                                LinearLayout.LayoutParams.MATCH_PARENT,
+                //                                LinearLayout.LayoutParams.MATCH_PARENT
+                //                        ));
+                //                        si.setImageResource(R.drawable.cookit_app_logo);
+                //                        si.setShapeAppearanceModel(si.getShapeAppearanceModel().toBuilder().
+                //                                setTopRightCorner(CornerFamily.ROUNDED,30).build());
+                //                        ll.addView(si);
+                //                        ll.setGravity(Gravity.CENTER_VERTICAL);
                     }
                 });
             }
