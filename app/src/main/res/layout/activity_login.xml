@@ -38,7 +38,6 @@
         android:background="@drawable/et_style"/>
 
     <include
-        android:id="@+id/progress_bar"
         layout="@layout/include_progressbar"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
