@@ -16,4 +16,7 @@
     <string name="my_recipes">my recipes</string>
     <string name="recent">recent</string>
     <string name="trending">trending</string>
+    <string name="recipe_name">recipe name</string>
+    <string name="preparation_time">preparation time</string>
+    <string name="upload_recipe">Upload Recipe</string>
 </resources>

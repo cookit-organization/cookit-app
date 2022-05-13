@@ -21,8 +21,8 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferencesObject spo = new SharedPreferencesObject(this);
 
-        if(!spo.getPreferences().getBoolean(spo.isSignedUp, false))
-            startActivity(new Intent(this, LoginActivity.class));
+//        if(!spo.getPreferences().getBoolean(spo.isSignedUp, false))
+//            startActivity(new Intent(this, LoginActivity.class));
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(item -> {
