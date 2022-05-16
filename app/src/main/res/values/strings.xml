@@ -19,4 +19,6 @@
     <string name="recipe_name">recipe name</string>
     <string name="preparation_time">preparation time</string>
     <string name="upload_recipe">Upload Recipe</string>
+    <string name="component">component</string>
+    <string name="amount">amount</string>
 </resources>
