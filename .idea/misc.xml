@@ -6,9 +6,7 @@
         <entry key="..\:/Users/USER/AndroidStudioProjects/cookitapp/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/cookitapp/app/src/main/res/layout/activity_main.xml" value="0.24615384615384617" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/cookitapp/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
-        <entry key="..\:/Users/USER/AndroidStudioProjects/cookitapp/app/src/main/res/layout/add_fragment.xml" value="0.264" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/cookitapp/app/src/main/res/layout/explore_fragment.xml" value="0.25" />
-        <entry key="..\:/Users/USER/AndroidStudioProjects/cookitapp/app/src/main/res/layout/home_fragment.xml" value="0.25" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/cookitapp/app/src/main/res/layout/progressbar.xml" value="0.25" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/cookitapp/app/src/main/res/layout/rate_fragment.xml" value="0.24615384615384617" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/cookitapp/app/src/main/res/layout/recipe_card.xml" value="0.25" />
@@ -20,10 +18,11 @@
         <entry key="..\:/Users/yechi/AndroidStudioProjects/MyApplication/cookit-app/app/src/main/res/drawable/profile_style.xml" value="0.2703125" />
         <entry key="..\:/Users/yechi/AndroidStudioProjects/MyApplication/cookit-app/app/src/main/res/drawable/ratingbar_theme.xml" value="0.2703125" />
         <entry key="..\:/Users/yechi/AndroidStudioProjects/MyApplication/cookit-app/app/src/main/res/drawable/recipe_image_border.xml" value="0.2703125" />
+        <entry key="..\:/Users/yechi/AndroidStudioProjects/MyApplication/cookit-app/app/src/main/res/layout-v26/add_fragment.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/yechi/AndroidStudioProjects/MyApplication/cookit-app/app/src/main/res/layout/activity_login.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/yechi/AndroidStudioProjects/MyApplication/cookit-app/app/src/main/res/layout/activity_main.xml" value="0.24010416666666667" />
         <entry key="..\:/Users/yechi/AndroidStudioProjects/MyApplication/cookit-app/app/src/main/res/layout/activity_sign_up.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/yechi/AndroidStudioProjects/MyApplication/cookit-app/app/src/main/res/layout/add_fragment.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/yechi/AndroidStudioProjects/MyApplication/cookit-app/app/src/main/res/layout/add_fragment.xml" value="0.264" />
         <entry key="..\:/Users/yechi/AndroidStudioProjects/MyApplication/cookit-app/app/src/main/res/layout/explore_fragment.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/yechi/AndroidStudioProjects/MyApplication/cookit-app/app/src/main/res/layout/home_fragment.xml" value="0.264" />
         <entry key="..\:/Users/yechi/AndroidStudioProjects/MyApplication/cookit-app/app/src/main/res/layout/include_progressbar.xml" value="0.25416666666666665" />
