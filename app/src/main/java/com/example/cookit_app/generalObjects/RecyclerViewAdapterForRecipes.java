@@ -14,13 +14,13 @@ import com.example.cookit_app.server.responseObjects.Recipe;
 
 import java.util.List;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
+public class RecyclerViewAdapterForRecipes extends RecyclerView.Adapter<RecyclerViewAdapterForRecipes.ViewHolder> {
 
     private final List<Recipe> list;
     private final LayoutInflater inflater;
     ItemClickListener clickListener;
 
-    public RecyclerViewAdapter(Context context, List<Recipe> list) {
+    public RecyclerViewAdapterForRecipes(Context context, List<Recipe> list) {
         this.list = list;
         this.inflater = LayoutInflater.from(context);
     }

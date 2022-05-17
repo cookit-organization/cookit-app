@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.cookit_app.R;
 import com.example.cookit_app.generalObjects.GridSpacingItemDecoration;
-import com.example.cookit_app.generalObjects.RecyclerViewAdapter;
+import com.example.cookit_app.generalObjects.RecyclerViewAdapterForRecipes;
 import com.example.cookit_app.server.Retrofit2Init;
 import com.example.cookit_app.server.RetrofitInterface;
 import com.example.cookit_app.server.responseObjects.Recipe;
@@ -27,7 +27,6 @@ public class Explore extends Fragment {
 
     List<Recipe> recipeCards;
     RecyclerView recyclerView;
-
 
     @SuppressLint("CommitPrefEdits") @Nullable @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -89,6 +88,6 @@ public class Explore extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, 100, false));
-        recyclerView.setAdapter(new RecyclerViewAdapter(getContext(), recipeCards));
+        recyclerView.setAdapter(new RecyclerViewAdapterForRecipes(getContext(), recipeCards));
     }
 }

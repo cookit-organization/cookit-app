@@ -6,7 +6,8 @@
     android:orientation="horizontal"
     android:padding="10dp"
     android:gravity="center_vertical"
-    android:background="@drawable/et_style">
+    android:background="@drawable/et_style"
+    android:layout_marginTop="10dp">
 
     <EditText
         android:id="@+id/component_et"
@@ -28,10 +29,10 @@
         android:background="@drawable/et_style"/>
 
     <ImageButton
+        android:id="@+id/remove_ib"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="10dp"
         android:background="@drawable/remove_24"/>
-
 
 </LinearLayout>
