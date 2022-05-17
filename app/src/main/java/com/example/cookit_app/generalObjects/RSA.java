@@ -19,6 +19,8 @@ import javax.crypto.NoSuchPaddingException;
 @RequiresApi(api = Build.VERSION_CODES.O)
 public class RSA {
 
+    //todo : https://github.com/orgs/cookit-organization/projects/2#card-81670442
+
     //add here publicKey and privateKey (privateKey must be hidden)
 
     //this is how to use the encryption and the decryption

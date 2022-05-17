@@ -35,7 +35,7 @@ public interface RetrofitInterface {
     //recipes
 
     @POST("/recipes/new-recipe")
-    Call<Void> newRecipe(@QueryMap HashMap<String, String> recipeData);
+    Call<Void> newRecipe(@QueryMap HashMap<String, Object> recipeData);
 
     @PUT("/recipes/update-recipe")
     Call<Void> updateRecipe(@Query("collectionId") String collectionId, @Query("recipeId") String recipeId, @QueryMap HashMap<String, String> newData);

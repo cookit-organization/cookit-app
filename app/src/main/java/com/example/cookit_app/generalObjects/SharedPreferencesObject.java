@@ -13,7 +13,8 @@ public class SharedPreferencesObject {
 
     public final String
             isSignedUp = "is_signed_up",
-            wantedTagsList = "wanted_tags_list";
+            wantedTagsList = "wanted_tags_list",
+            username = "username";
 
 
     public SharedPreferencesObject(Context context) {
