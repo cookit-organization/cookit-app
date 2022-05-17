@@ -1,7 +1,7 @@
 package com.example.cookit_app.ui.fragments.homepage_fragmets;
 
 import android.annotation.SuppressLint;
-import android.media.Image;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -23,9 +25,7 @@ import com.example.cookit_app.server.Retrofit2Init;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
 import com.example.cookit_app.generalObjects.MultiSpinner;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -36,6 +36,7 @@ public class Add extends Fragment{
     RecyclerView recyclerView;
     List<Component> components;
     RecyclerViewAdapterForAddComponents rv;
+
 
     @SuppressLint("ResourceType") @Nullable @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -93,37 +94,66 @@ public class Add extends Fragment{
 
         //after checking if everything that must be filled is filled send this
         upload_recipe.setOnClickListener(v -> {
-            progressBar.setVisibility(View.VISIBLE);
+            boolean correct = true;
 
-            HashMap<String, Object> recipeData = new HashMap<>();
+            if(recipe_name.getText().toString().equals("")){
+                recipe_name.setError("Field is empty");
+                correct = false;
+            }
 
-            recipeData.put("author_username", spo.getPreferences().getString(spo.username, null));
-            recipeData.put("recipe_name", recipe_name.getText().toString());
-            recipeData.put("preparation_time", preparation_time.getText().toString());
-            recipeData.put("mea_time", meal_time.getSelectedItem()); //what it's contains ?
-            recipeData.put("tags", tags.getSelectedItem()); //what it's contains ?
-            recipeData.put("description", recipe_details.getText().toString());
-            recipeData.put("image", null); // still thinking what to do..
+            if(meal_time.getSelectedItem() == "pick Meal time"){
+                TextView errorText = (TextView)meal_time.getSelectedView();
+                errorText.setError("");
+                errorText.setTextColor(Color.RED);
+                errorText.setText("Field is empty");
+                correct = false;
+            }
 
-            Call<Void> call = new Retrofit2Init().retrofitInterface.newRecipe(recipeData);
+            List<Component> component = rv.getList();
+            for(Component c: component){
+                if(c.getComponent() == null || c.getComponent().equals("")){
+                    correct = false;
+                }
+                if(c.getAmount() == null || c.getAmount().equals("")){
+                    correct = false;
+                }
+            }
 
-            call.enqueue(new Callback<Void>() {
-                @Override
-                public void onResponse(Call<Void> call, Response<Void> response) {
-                    progressBar.setVisibility(View.GONE);
-                    if(response.isSuccessful()){
-                        //recipe uploaded
-                    }else{
-                        //check reasons
+            if(correct){
+                Toast.makeText(getContext(), "הכל תקין" ,Toast.LENGTH_LONG).show();
+
+                progressBar.setVisibility(View.VISIBLE);
+
+                HashMap<String, Object> recipeData = new HashMap<>();
+
+                recipeData.put("author_username", spo.getPreferences().getString(spo.username, null));
+                recipeData.put("recipe_name", recipe_name.getText().toString());
+                recipeData.put("preparation_time", preparation_time.getText().toString());
+                recipeData.put("mea_time", meal_time.getSelectedItem()); //what it's contains ?
+                recipeData.put("tags", tags.getSelectedItem()); //what it's contains ?
+                recipeData.put("description", recipe_details.getText().toString());
+                recipeData.put("image", null); // still thinking what to do..
+
+                Call<Void> call = new Retrofit2Init().retrofitInterface.newRecipe(recipeData);
+
+                call.enqueue(new Callback<Void>() {
+                    @Override
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+                        progressBar.setVisibility(View.GONE);
+                        if(response.isSuccessful()){
+                            //recipe uploaded
+                        }else{
+                            //check reasons
+                        }
                     }
-                }
 
-                @Override
-                public void onFailure(Call<Void> call, Throwable t) {
-                    progressBar.setVisibility(View.GONE);
-                    //check reason
-                }
-            });
+                    @Override
+                    public void onFailure(Call<Void> call, Throwable t) {
+                        progressBar.setVisibility(View.GONE);
+                        //check reason
+                    }
+                });
+            }
         });
 
         return view;

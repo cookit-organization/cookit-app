@@ -22,4 +22,5 @@
     <string name="component">component</string>
     <string name="amount">amount</string>
     <string name="recipe_details">recipe details</string>
+    <string name="recipe_components">recipe components</string>
 </resources>
