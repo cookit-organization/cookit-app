@@ -2,6 +2,8 @@ package com.example.cookit_app.generalObjects;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.cookit_app.R;
 import java.util.List;
 
-public class RecyclerViewAdapterForAddComponents extends RecyclerView.Adapter<RecyclerViewAdapterForAddComponents.ViewHolder>{
+public class RecyclerViewAdapterForAddComponents extends RecyclerView.Adapter<RecyclerViewAdapterForAddComponents.ViewHolder> {
 
     private final List<Component> list;
     private final LayoutInflater inflater;
@@ -39,10 +41,49 @@ public class RecyclerViewAdapterForAddComponents extends RecyclerView.Adapter<Re
 
         holder.component_et.setText(component.getComponent());
         holder.amount_et.setText(component.getAmount());
-        holder.remove.setOnClickListener(view -> {
+
+        onTextChanged(component, holder); // to make sure data is getting updated
+
+        holder.remove.setOnClickListener(v -> {
             if(list.size() == 1) return;
             list.remove(position);
             notifyDataSetChanged();
+        });
+    }
+
+    private void onTextChanged(Component component, ViewHolder holder){
+        holder.component_et.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                component.setComponent(editable.toString());
+            }
+        });
+
+        holder.amount_et.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                component.setAmount(editable.toString());
+            }
         });
     }
 

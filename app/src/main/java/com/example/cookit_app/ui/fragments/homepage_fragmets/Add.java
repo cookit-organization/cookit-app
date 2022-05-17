@@ -63,6 +63,7 @@ public class Add extends Fragment{
         recyclerViewAdapter();
 
         //add component button
+        //to get the list of the componenets
 
         add_component_ib.setOnClickListener(v -> {
             addComponent();
