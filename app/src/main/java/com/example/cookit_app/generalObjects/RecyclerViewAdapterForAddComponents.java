@@ -12,27 +12,38 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.cookit_app.R;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecyclerViewAdapterForAddComponents extends RecyclerView.Adapter<RecyclerViewAdapterForAddComponents.ViewHolder> {
 
     private final List<Component> list;
+    private final List<ViewHolder> viewHolders;
     private final LayoutInflater inflater;
     RecyclerViewAdapterForAddComponents.ItemClickListener clickListener;
 
     public RecyclerViewAdapterForAddComponents(Context context, List<Component> list) {
         this.list = list;
         this.inflater = LayoutInflater.from(context);
+
+        viewHolders = new ArrayList<>();
     }
 
     public List<Component> getList(){
         return list;
     }
 
+    public List<ViewHolder> getViewHolders(){
+        return viewHolders;
+    }
+
     @NonNull @Override
     public RecyclerViewAdapterForAddComponents.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.add_component_card, parent, false);
-        return new RecyclerViewAdapterForAddComponents.ViewHolder(view);
+        ViewHolder holder = new RecyclerViewAdapterForAddComponents.ViewHolder(view);
+        this.viewHolders.add(holder);
+        return holder;
     }
 
     @SuppressLint("NotifyDataSetChanged") @Override
@@ -98,11 +109,12 @@ public class RecyclerViewAdapterForAddComponents extends RecyclerView.Adapter<Re
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        TextView component_et, amount_et;
+        public TextView component_et, amount_et;
         ImageButton remove;
 
         public ViewHolder(View itemView) {
             super(itemView);
+
              component_et = itemView.findViewById(R.id.component_et);
              amount_et = itemView.findViewById(R.id.amount_et);
              remove = itemView.findViewById(R.id.remove_ib);
@@ -114,5 +126,6 @@ public class RecyclerViewAdapterForAddComponents extends RecyclerView.Adapter<Re
         public void onClick(View view) {
             if (clickListener != null) clickListener.onItemClick(view, getAdapterPosition());
         }
+
     }
 }

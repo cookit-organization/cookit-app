@@ -11,8 +11,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -37,8 +35,7 @@ public class Add extends Fragment{
     List<Component> components;
     RecyclerViewAdapterForAddComponents rv;
 
-
-    @SuppressLint("ResourceType") @Nullable @Override
+    @SuppressLint({"ResourceType", "SetTextI18n"}) @Nullable @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.add_fragment, container, false);
 
@@ -55,82 +52,65 @@ public class Add extends Fragment{
 
         ProgressBar progressBar = view.findViewById(R.id.progress_bar);
 
-        //todo: arthur => https://github.com/orgs/cookit-organization/projects/2#card-81988242
+        //todo: arthur => upload an image https://github.com/orgs/cookit-organization/projects/2#card-81988242
 
         // spinners
-
-        List<String> listTags = new ArrayList<>();
-
-        listTags.add("meat");
-        listTags.add("soup");
-        listTags.add("fish");
-
-        tags.setItems(listTags, "pick Tags", selected -> {});
-
-        List<String> listMealTime = new ArrayList<>();
-
-        listMealTime.add("Morning");
-        listMealTime.add("Afternoon");
-        listMealTime.add("Night");
-
-        meal_time.setItems(listMealTime, "pick Meal time", selected -> {});
+        createSpinners();
 
         //recyclerview adapter for add components
-
         components = new ArrayList<>();
 
         addComponent();
         recyclerViewAdapter();
 
-        //add component button
-        //to get the list of the components ➡ rv.getList();
-
         add_component_ib.setOnClickListener(v -> {
-            addComponent();
-            recyclerViewAdapter();
+               addComponent();
+               recyclerViewAdapter();
         });
 
-        //upload recipe todo: arthur => https://github.com/orgs/cookit-organization/projects/2#card-82037536
-
-        //after checking if everything that must be filled is filled send this
         upload_recipe.setOnClickListener(v -> {
             boolean correct = true;
 
-            if(recipe_name.getText().toString().equals("")){
+            String recipeName = recipe_name.getText().toString();
+
+            if (recipeName.equals("")) {
                 recipe_name.setError("Field is empty");
                 correct = false;
             }
 
-            if(meal_time.getSelectedItem() == "pick Meal time"){
-                TextView errorText = (TextView)meal_time.getSelectedView();
+            if (meal_time.getSelectedItem() == "pick Meal time") {
+                TextView errorText = (TextView) meal_time.getSelectedView();
                 errorText.setError("");
                 errorText.setTextColor(Color.RED);
                 errorText.setText("Field is empty");
                 correct = false;
             }
 
-            List<Component> component = rv.getList();
-            for(Component c: component){
-                if(c.getComponent() == null || c.getComponent().equals("")){
+            for (int i = 0; i < rv.getViewHolders().size(); i++) {
+
+                String comp = rv.getViewHolders().get(i).component_et.getText().toString();
+                String amount = rv.getViewHolders().get(i).amount_et.getText().toString();
+
+                if (comp.equals("")) {
+                    rv.getViewHolders().get(i).component_et.setError("Field is empty");
                     correct = false;
                 }
-                if(c.getAmount() == null || c.getAmount().equals("")){
+                if (amount.equals("")) {
+                    rv.getViewHolders().get(i).amount_et.setError("Field is empty");
                     correct = false;
                 }
             }
 
-            if(correct){
-                Toast.makeText(getContext(), "הכל תקין" ,Toast.LENGTH_LONG).show();
-
+            if (correct) {
                 progressBar.setVisibility(View.VISIBLE);
 
-                HashMap<String, Object> recipeData = new HashMap<>();
+                HashMap<String, String> recipeData = new HashMap<>();
 
                 recipeData.put("author_username", spo.getPreferences().getString(spo.username, null));
-                recipeData.put("recipe_name", recipe_name.getText().toString());
+                recipeData.put("recipe_name", recipeName);
                 recipeData.put("preparation_time", preparation_time.getText().toString());
-                recipeData.put("mea_time", meal_time.getSelectedItem()); //what it's contains ?
-                recipeData.put("tags", tags.getSelectedItem()); //what it's contains ?
+                recipeData.put("mea_time", meal_time.getSelectedItem().toString());
+                recipeData.put("tags", tags.getSelectedItem().toString());
                 recipeData.put("description", recipe_details.getText().toString());
                 recipeData.put("image", null); // still thinking what to do..
 
@@ -140,9 +120,9 @@ public class Add extends Fragment{
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         progressBar.setVisibility(View.GONE);
-                        if(response.isSuccessful()){
+                        if (response.isSuccessful()) {
                             //recipe uploaded
-                        }else{
+                        } else {
                             //check reasons
                         }
                     }
@@ -171,5 +151,20 @@ public class Add extends Fragment{
         recyclerView.setAdapter(rv);
     }
 
+    private void createSpinners(){
+
+        List<String> listTags = new ArrayList<>();
+        listTags.add("meat");
+        listTags.add("soup");
+        listTags.add("fish");
+
+        List<String> listMealTime = new ArrayList<>();
+        listMealTime.add("Morning");
+        listMealTime.add("Afternoon");
+        listMealTime.add("Night");
+
+        tags.setItems(listTags, "pick Tags", selected -> {});
+        meal_time.setItems(listMealTime, "pick Meal time", selected -> {});
+    }
 
 }
