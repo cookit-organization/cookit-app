@@ -2,6 +2,7 @@ package com.example.cookit_app.ui.fragments.homepage_fragmets;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
@@ -17,6 +19,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.cookit_app.R;
 import com.example.cookit_app.generalObjects.Component;
+
+import com.example.cookit_app.generalObjects.DialogFragment;
 import com.example.cookit_app.generalObjects.RecyclerViewAdapterForAddComponents;
 import com.example.cookit_app.generalObjects.SharedPreferencesObject;
 import com.example.cookit_app.server.Retrofit2Init;
@@ -28,12 +32,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Add extends Fragment{
+public class Add extends Fragment {
 
     MultiSpinner tags, meal_time;
     RecyclerView recyclerView;
     List<Component> components;
     RecyclerViewAdapterForAddComponents rv;
+    ImageView recipe_image;
+    Uri image_uri;
 
     @SuppressLint({"ResourceType", "SetTextI18n"}) @Nullable @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -41,6 +47,7 @@ public class Add extends Fragment{
 
         SharedPreferencesObject spo = new SharedPreferencesObject(requireContext());
 
+        recipe_image = view.findViewById(R.id.recipe_image);
         EditText recipe_name = view.findViewById(R.id.add_recipe_name_et);
         EditText preparation_time = view.findViewById(R.id.add_preparation_time);
         tags = view.findViewById(R.id.add_tags);
@@ -51,6 +58,11 @@ public class Add extends Fragment{
         Button upload_recipe = view.findViewById(R.id.upload_recipe);
 
         ProgressBar progressBar = view.findViewById(R.id.progress_bar);
+
+        recipe_image.setOnClickListener(v -> {
+            DialogFragment fragment = new DialogFragment(recipe_image);
+            fragment.show(getFragmentManager(),"dialog");
+        });
 
         //todo: arthur => upload an image https://github.com/orgs/cookit-organization/projects/2#card-81988242
 
