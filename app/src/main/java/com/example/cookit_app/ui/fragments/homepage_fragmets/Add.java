@@ -109,6 +109,7 @@ public class Add extends Fragment{
                 correct = false;
             }
 
+
             List<Component> component = rv.getList();
             for(Component c: component){
                 if(c.getComponent() == null || c.getComponent().equals("")){
