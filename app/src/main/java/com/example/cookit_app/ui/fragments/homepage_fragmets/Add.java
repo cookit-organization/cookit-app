@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -51,7 +52,7 @@ public class Add extends Fragment{
         Button upload_recipe = view.findViewById(R.id.upload_recipe);
 
         ProgressBar progressBar = view.findViewById(R.id.progress_bar);
-
+        progressBar.setVisibility(View.VISIBLE);
         //todo: arthur => upload an image https://github.com/orgs/cookit-organization/projects/2#card-81988242
 
         // spinners
@@ -70,7 +71,6 @@ public class Add extends Fragment{
 
         upload_recipe.setOnClickListener(v -> {
             boolean correct = true;
-
             String recipeName = recipe_name.getText().toString();
 
             if (recipeName.equals("")) {
@@ -106,8 +106,8 @@ public class Add extends Fragment{
 
                 HashMap<String, String> recipeData = new HashMap<>();
 
-                recipeData.put("author_username", spo.getPreferences().getString(spo.username, null));
-                recipeData.put("recipe_name", recipeName);
+                recipeData.put("author_username", spo.getPreferences().getString(spo.username, "shmuel"));
+                recipeData.put("name", recipeName);
                 recipeData.put("preparation_time", preparation_time.getText().toString());
                 recipeData.put("mea_time", meal_time.getSelectedItem().toString());
                 recipeData.put("tags", tags.getSelectedItem().toString());
@@ -121,8 +121,10 @@ public class Add extends Fragment{
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         progressBar.setVisibility(View.GONE);
                         if (response.isSuccessful()) {
+                            Toast.makeText(requireContext(), "Yay!\n" + response.body(), Toast.LENGTH_SHORT).show();
                             //recipe uploaded
                         } else {
+                            Toast.makeText(requireContext(), "Nooo!\n" + response.message(), Toast.LENGTH_SHORT).show();
                             //check reasons
                         }
                     }

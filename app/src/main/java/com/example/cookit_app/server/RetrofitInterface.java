@@ -4,7 +4,6 @@ import com.example.cookit_app.server.responseObjects.Recipe;
 import com.example.cookit_app.server.responseObjects.User;
 import java.util.HashMap;
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;

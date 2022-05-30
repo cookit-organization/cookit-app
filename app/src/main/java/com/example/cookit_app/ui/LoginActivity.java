@@ -2,7 +2,6 @@ package com.example.cookit_app.ui;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.example.cookit_app.R;
+import com.example.cookit_app.generalObjects.SharedPreferencesObject;
 import com.example.cookit_app.server.Retrofit2Init;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,6 +23,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        SharedPreferencesObject spo = new SharedPreferencesObject(this);
 
         EditText username_et = findViewById(R.id.username);
         EditText password_et = findViewById(R.id.password);
@@ -46,12 +48,13 @@ public class LoginActivity extends AppCompatActivity {
 //                    Log.d("tesTag", encryptedPassword);
 
                     //sending the request
-                    Call<Void> call = new Retrofit2Init().retrofitInterface.logInUser(username, password); //change back to encrypted after testing
+                    Call<Void> call = new Retrofit2Init().retrofitInterface.logInUser(username, password);
                     call.enqueue(new Callback<Void>() {
                         @Override
                         public void onResponse(Call<Void> call, Response<Void> response) {
                             progressBar.setVisibility(View.GONE);
                             if(response.isSuccessful()){
+                                spo.getPreferences().edit().putString(spo.username, username).apply();
                                 startActivity(new Intent(getBaseContext(), MainActivity.class));
                             }else if (response.code() == 403){
                                 Toast.makeText(getBaseContext(), "Incorrect username or password.", Toast.LENGTH_SHORT).show();
