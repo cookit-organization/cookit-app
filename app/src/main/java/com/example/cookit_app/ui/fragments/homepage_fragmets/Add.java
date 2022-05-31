@@ -101,6 +101,7 @@ public class Add extends Fragment{
                 }
             }
 
+            correct = true;
             if (correct) {
                 progressBar.setVisibility(View.VISIBLE);
 
@@ -119,20 +120,12 @@ public class Add extends Fragment{
                 call.enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
-                        progressBar.setVisibility(View.GONE);
-                        if (response.isSuccessful()) {
-                            Toast.makeText(requireContext(), "Yay!\n" + response.body(), Toast.LENGTH_SHORT).show();
-                            //recipe uploaded
-                        } else {
-                            Toast.makeText(requireContext(), "Nooo!\n" + response.message(), Toast.LENGTH_SHORT).show();
-                            //check reasons
-                        }
+
                     }
 
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {
-                        progressBar.setVisibility(View.GONE);
-                        //check reason
+
                     }
                 });
             }

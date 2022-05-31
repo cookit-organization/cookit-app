@@ -33,10 +33,11 @@ public class RecyclerViewAdapterForRecipes extends RecyclerView.Adapter<Recycler
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Recipe recipeCard = list.get(position);
+        Recipe recipe = list.get(position);
+
         //set actions for each recipe card here !
-        holder.recipe_name.setText(recipeCard.getRecipe_name());
-        holder.author_name.setText(recipeCard.getAuthor_name());
+        holder.recipe_name.setText(recipe.recipe.getName());
+        holder.author_username.setText(recipe.getAuthor_username());
     }
 
     public interface ItemClickListener {
@@ -52,14 +53,14 @@ public class RecyclerViewAdapterForRecipes extends RecyclerView.Adapter<Recycler
 
         ImageView recipe_image;
         ImageButton save_button;
-        TextView recipe_name, author_name;
+        TextView recipe_name, author_username;
 
         public ViewHolder(View itemView) {
             super(itemView);
             recipe_image = itemView.findViewById(R.id.recipe_image);
             save_button = itemView.findViewById(R.id.save_button);
             recipe_name = itemView.findViewById(R.id.recipe_name_tv);
-            author_name = itemView.findViewById(R.id.author_name_tv);
+            author_username = itemView.findViewById(R.id.author_username_tv);
 
             itemView.setOnClickListener(this);
         }

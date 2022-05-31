@@ -34,7 +34,7 @@
           android:textSize="20sp" />
 
       <TextView
-          android:id="@+id/author_name_tv"
+          android:id="@+id/author_username_tv"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_below="@id/recipe_name_tv"
