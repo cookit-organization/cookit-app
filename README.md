@@ -1,3 +1,3 @@
 # cookit-app
 
-A social app for sharing recipes on the internet
+A social network app for sharing recipes on the internet
