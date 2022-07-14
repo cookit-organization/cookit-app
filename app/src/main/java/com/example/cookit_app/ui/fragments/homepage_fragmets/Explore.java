@@ -20,7 +20,6 @@ import com.example.cookit_app.server.Retrofit2Init;
 import com.example.cookit_app.server.RetrofitInterface;
 import com.example.cookit_app.server.responseObjects.Recipe;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;

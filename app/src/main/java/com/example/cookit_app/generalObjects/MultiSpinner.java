@@ -6,8 +6,6 @@ import android.content.DialogInterface;
 import android.util.AttributeSet;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import java.util.List;
 
