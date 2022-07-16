@@ -54,4 +54,7 @@ public interface RetrofitInterface {
     @GET("/recipes/get-recipe-by-name")
     Call<List<Recipe>> getRecipeByName(@Query("name") String name);
 
+    @POST("/recipes/vote")
+    Call<Void> vote(@Query("recipeId") String recipeId,@Query("username") String username, Query("vote") int vote); // username to store who voted bcuz if he voted already we can't let him fo it again
+
 }

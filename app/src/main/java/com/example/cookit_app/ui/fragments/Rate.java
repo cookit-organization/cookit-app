@@ -29,9 +29,12 @@ public class Rate extends Fragment {
     }
 
     public void updateDB(){
-        //TODO: ➖ send the rate vote to the server
-        //      ➖ add it to the average
-        //      ➖ update in database
-        //getRatingBar().getRating()
+        /* TODO:
+        ➖ send the rate vote to the server
+        in the server :         
+          ➖  add it to the average 
+          ➖ update in database */
+
+        // getRatingBar().getRating() 
     }
 }
