@@ -127,6 +127,7 @@ public class SignUpActivity extends AppCompatActivity {
                             if(response.isSuccessful()){
                                 Toast.makeText(getBaseContext(), "Signed up successfully.", Toast.LENGTH_SHORT).show();
                                 spo.getPreferences().edit().putBoolean(spo.isSignedUp, true).apply();
+                                spo.getPreferences().edit().putString(spo.username, username).apply(); // remember to save without RSA
                             }else{
                                 Toast.makeText(getBaseContext(),response.code() + "\n" + response.message(), Toast.LENGTH_LONG).show();
                             }

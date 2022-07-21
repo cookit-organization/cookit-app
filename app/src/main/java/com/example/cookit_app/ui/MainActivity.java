@@ -21,6 +21,10 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferencesObject spo = new SharedPreferencesObject(this);
 
+        //need test
+//        if(spo.getPreferences().getString(spo.username, null) == null)
+//            startActivity(new Intent(this, LoginActivity.class));
+
 //        if(!spo.getPreferences().getBoolean(spo.isSignedUp, false))
 //            startActivity(new Intent(this, LoginActivity.class));
 

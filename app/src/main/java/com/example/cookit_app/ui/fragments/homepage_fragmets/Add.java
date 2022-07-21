@@ -62,6 +62,7 @@ public class Add extends Fragment{
 
         ProgressBar progressBar = view.findViewById(R.id.progress_bar);
         progressBar.setVisibility(View.VISIBLE);
+
         //todo: arthur => upload an image https://github.com/orgs/cookit-organization/projects/2#card-81988242
 
         // spinners
@@ -110,7 +111,7 @@ public class Add extends Fragment{
                 }
             }
 
-            correct = true;
+//            correct = true;
             if (correct) {
                 progressBar.setVisibility(View.VISIBLE);
 
@@ -122,7 +123,7 @@ public class Add extends Fragment{
                 recipeData.put("mea_time", meal_time.getSelectedItem().toString());
                 recipeData.put("tags", tags.getSelectedItem().toString());
                 recipeData.put("description", recipe_details.getText().toString());
-                recipeData.put("image", null); // still thinking what to do..
+                recipeData.put("image", null); // send the actual image
 
                 Call<Void> call = new Retrofit2Init().retrofitInterface.newRecipe(recipeData);
 
@@ -178,25 +179,25 @@ public class Add extends Fragment{
         System.out.println(outState);
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        onSaveInstanceState(bundle);
-        Toast.makeText(getContext(), "onPause", Toast.LENGTH_SHORT).show();
-    }
+//    @Override
+//    public void onPause() {
+//        super.onPause();
+//        onSaveInstanceState(bundle);
+//        Toast.makeText(getContext(), "onPause", Toast.LENGTH_SHORT).show();
+//    }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        System.out.println(bundle.containsKey("test"));
-        if (bundle.containsKey("test")) {
-            Toast.makeText(getContext(), "yes", Toast.LENGTH_SHORT).show();
-            // Restore value of members from saved state
-            recipe_name.setText(bundle.getString("test"));
-        } else {
-            Toast.makeText(getContext(), "no", Toast.LENGTH_SHORT).show();
-            // Probably initialize members with default values for a new instance
-        }
-    }
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//
+//        System.out.println(bundle.containsKey("test"));
+//        if (bundle.containsKey("test")) {
+//            Toast.makeText(getContext(), "yes", Toast.LENGTH_SHORT).show();
+//            // Restore value of members from saved state
+//            recipe_name.setText(bundle.getString("test"));
+//        } else {
+//            Toast.makeText(getContext(), "no", Toast.LENGTH_SHORT).show();
+//            // Probably initialize members with default values for a new instance
+//        }
+//    }
 }

@@ -2,23 +2,14 @@ package com.example.cookit_app.server.responseObjects;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
 import androidx.annotation.NonNull;
-
 import com.google.gson.annotations.SerializedName;
-
 import java.util.List;
 
 public class Recipe implements Parcelable {
 
-    private String _id, author_username;
+    private final String _id, author_username, author_name;
     public RecipeDetails recipe;
-
-    protected Recipe(Parcel in) {
-        _id = in.readString();
-        author_username = in.readString();
-        recipe = in.readParcelable(RecipeDetails.class.getClassLoader());
-    }
 
     public String get_id() {
         return _id;
@@ -26,6 +17,17 @@ public class Recipe implements Parcelable {
 
     public String getAuthor_username() {
         return author_username;
+    }
+
+    public String getAuthor_name() {
+        return author_name;
+    }
+
+    protected Recipe(Parcel in) {
+        _id = in.readString();
+        author_username = in.readString();
+        author_name = in.readString();
+        recipe = in.readParcelable(RecipeDetails.class.getClassLoader());
     }
 
     @NonNull @Override
@@ -43,36 +45,12 @@ public class Recipe implements Parcelable {
                 "\n]";
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
+    public static class RecipeDetails implements Parcelable{
 
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(_id);
-        parcel.writeString(author_username);
-        parcel.writeValue(recipe);
-    }
-
-    public static final Creator<Recipe> CREATOR = new Creator<Recipe>() {
-        @Override
-        public Recipe createFromParcel(Parcel in) {
-            return new Recipe(in);
-        }
-
-        @Override
-        public Recipe[] newArray(int size) {
-            return new Recipe[size];
-        }
-    };
-
-    public class RecipeDetails implements Parcelable{
-
-        private String name, description, image;
+        private final String name, description, image;
         @SerializedName("meal_time")
-        private List<String> mealtime;
-        private List<String> tags;
+        private final List<String> mealtime;
+        private final List<String> tags;
         private Number average_rate, rates_number;
 
         protected RecipeDetails(Parcel in) {
@@ -140,5 +118,29 @@ public class Recipe implements Parcelable {
         };
 
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(_id);
+        parcel.writeString(author_username);
+        parcel.writeValue(recipe);
+    }
+
+    public static final Creator<Recipe> CREATOR = new Creator<Recipe>() {
+        @Override
+        public Recipe createFromParcel(Parcel in) {
+            return new Recipe(in);
+        }
+
+        @Override
+        public Recipe[] newArray(int size) {
+            return new Recipe[size];
+        }
+    };
 
 }
