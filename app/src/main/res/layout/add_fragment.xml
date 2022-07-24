@@ -24,7 +24,6 @@
                 android:src="@drawable/default_image"
                 tools:ignore="MissingConstraints" />
 
-
             <LinearLayout
                 android:id="@+id/line1"
                 android:layout_width="fill_parent"
@@ -40,8 +39,7 @@
                     android:layout_width="0dp"
                     android:layout_height="2dp"
                     android:layout_weight="1.1"
-                    android:background="@color/teal_700"
-                    />
+                    android:background="@color/teal_700" />
 
                 <TextView
                     android:id="@+id/textView1"
