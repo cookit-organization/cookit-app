@@ -21,7 +21,7 @@ import com.example.cookit_app.generalObjects.RecyclerViewAdapterForRecipes;
 import com.example.cookit_app.generalObjects.SharedPreferencesObject;
 import com.example.cookit_app.server.Retrofit2Init;
 import com.example.cookit_app.server.responseObjects.Recipe;
-import com.example.cookit_app.ui.setting;
+import com.example.cookit_app.ui.Setting;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -43,7 +43,7 @@ public class Home extends Fragment{
         setting= view.findViewById(R.id.setting);
         setting.setOnClickListener(v -> {
 
-            startActivity(new Intent(getContext(), com.example.cookit_app.ui.setting.class));
+            startActivity(new Intent(getContext(), Setting.class));
 
         });
 

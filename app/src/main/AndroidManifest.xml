@@ -22,7 +22,10 @@
             android:name=".ui.LoginActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.setting"
+            android:name=".ui.Setting"
+            android:exported="true" />
+        <activity
+            android:name=".ui.RecipeActivity"
             android:exported="true" />
         <activity
             android:name=".ui.MainActivity"

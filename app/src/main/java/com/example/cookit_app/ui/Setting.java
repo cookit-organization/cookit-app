@@ -19,7 +19,7 @@ import com.google.android.material.imageview.ShapeableImageView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class setting extends AppCompatActivity {
+public class Setting extends AppCompatActivity {
 
     MultiSpinner tags, favorite_categories;
     MaterialButton logOut, deleteAccount, changePassword;
@@ -46,7 +46,7 @@ public class setting extends AppCompatActivity {
         createSpinners();
 
         logOut.setOnClickListener(V -> {
-            builder = new AlertDialog.Builder(setting.this);
+            builder = new AlertDialog.Builder(Setting.this);
 
             LinearLayout layout = new LinearLayout(this);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -83,7 +83,7 @@ public class setting extends AppCompatActivity {
         });
 
         deleteAccount.setOnClickListener(V -> {
-            builder = new AlertDialog.Builder(setting.this);
+            builder = new AlertDialog.Builder(Setting.this);
 
             LinearLayout layout = new LinearLayout(this);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -115,7 +115,7 @@ public class setting extends AppCompatActivity {
                     startActivity(new Intent(getBaseContext(), SignUpActivity.class));
                     finishAffinity();
                 }else{
-                    Toast.makeText(setting.this, "wrong password" , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Setting.this, "wrong password" , Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -132,7 +132,7 @@ public class setting extends AppCompatActivity {
         });
 
         name.setOnClickListener(v->{
-            builder = new AlertDialog.Builder(setting.this);
+            builder = new AlertDialog.Builder(Setting.this);
 
             LinearLayout layout = new LinearLayout(this);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -169,7 +169,7 @@ public class setting extends AppCompatActivity {
         });
 
         bio.setOnClickListener(v->{
-            builder = new AlertDialog.Builder(setting.this);
+            builder = new AlertDialog.Builder(Setting.this);
 
             LinearLayout layout = new LinearLayout(this);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -206,7 +206,7 @@ public class setting extends AppCompatActivity {
         });
 
         changePassword.setOnClickListener(v->{
-            builder = new AlertDialog.Builder(setting.this);
+            builder = new AlertDialog.Builder(Setting.this);
 
             LinearLayout layout = new LinearLayout(this);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -251,7 +251,7 @@ public class setting extends AppCompatActivity {
                     //change password
                     Toast.makeText(this, "password change to "+ newPassword1.getText().toString(), Toast.LENGTH_SHORT).show();
                 }else{
-                    Toast.makeText(setting.this, "wrong password" , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Setting.this, "wrong password" , Toast.LENGTH_SHORT).show();
                 }
             });
 

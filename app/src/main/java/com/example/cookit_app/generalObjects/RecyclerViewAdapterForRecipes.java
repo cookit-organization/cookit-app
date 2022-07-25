@@ -12,7 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.cookit_app.R;
 import com.example.cookit_app.server.responseObjects.Recipe;
+import com.example.cookit_app.ui.RecipeActivity;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class RecyclerViewAdapterForRecipes extends RecyclerView.Adapter<RecyclerViewAdapterForRecipes.ViewHolder> {
@@ -44,8 +46,8 @@ public class RecyclerViewAdapterForRecipes extends RecyclerView.Adapter<Recycler
         holder.author_name.setText(recipe.getAuthor_name());
 
         holder.recipe_image.setOnClickListener(view -> {
-            Intent i = new Intent(context, Recipe.class);
-            i.putExtra("recipe", recipe);
+            Intent i = new Intent(context, RecipeActivity.class);
+            i.putExtra("recipe", (Serializable) recipe);
             context.startActivity(i);
         });
     }
