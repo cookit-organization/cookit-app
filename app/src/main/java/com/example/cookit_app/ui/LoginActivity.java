@@ -29,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
         EditText username_et = findViewById(R.id.username);
         EditText password_et = findViewById(R.id.password);
         Button submit_login = findViewById(R.id.submit_login);
+        Button goToSignUp = findViewById(R.id.go_to_sign_up);
         ProgressBar progressBar = findViewById(R.id.progress_bar);
 
         submit_login.setOnClickListener(view -> {
@@ -79,6 +80,11 @@ public class LoginActivity extends AppCompatActivity {
             }else {
                 password_et.setError("Field is empty");
             }
+        });
+
+        goToSignUp.setOnClickListener(v->{
+            startActivity(new Intent(getBaseContext(), SignUpActivity.class));
+            finish();
         });
 
     }

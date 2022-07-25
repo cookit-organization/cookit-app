@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="10dp">
+    android:padding="10dp"
+    android:layout_marginTop="120dp">
 
     <TextView
         android:id="@+id/textView"
@@ -16,8 +18,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="100dp" />
+        tools:ignore="MissingConstraints" />
 
     <View
         android:id="@+id/line"
@@ -47,7 +48,7 @@
         <com.example.cookit_app.generalObjects.MultiSpinner
             android:id="@+id/tags"
             android:layout_width="match_parent"
-            android:layout_height="25dp"
+            android:layout_height="35dp"
             android:background="@drawable/et_style"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
@@ -71,11 +72,104 @@
         <com.example.cookit_app.generalObjects.MultiSpinner
             android:id="@+id/favorite_categories"
             android:layout_width="match_parent"
-            android:layout_height="25dp"
+            android:layout_height="35dp"
             android:background="@drawable/et_style"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/line1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="10dp">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_weight="1.1"
+            android:background="@color/teal_700" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:gravity="center"
+            android:text="change info"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_weight="1.1"
+            android:background="@color/teal_700" />
+
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/line1"
+        tools:ignore="MissingConstraints">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/profile_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@mipmap/ic_launcher"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay_App_circleImageView"
+            app:strokeColor="@color/purple_700"
+            app:strokeWidth="2dp"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/profile_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:text="@string/for_example"
+            android:textColor="@color/black"
+            android:textSize="50sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/profile_image" />
+
+        <TextView
+            android:id="@+id/profile_bio_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="6dp"
+            android:textSize="30sp"
+            android:text="@string/for_example"
+            app:layout_constraintStart_toEndOf="@+id/profile_image"
+            app:layout_constraintTop_toBottomOf="@+id/profile_name_tv" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/change_password"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="change password"
+        android:textColor="#000000"
+        app:backgroundTint="#ffffff"
+        app:iconGravity="textStart"
+        app:iconPadding="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout5"
+        app:strokeColor="@color/teal_700"
+        app:strokeWidth="1dp" />
 
     <View
         android:layout_width="match_parent"
@@ -84,20 +178,37 @@
         app:layout_constraintBottom_toTopOf="@+id/log_out"
         tools:layout_editor_absoluteX="10dp" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/log_out"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        app:strokeColor="#f00"
+        app:strokeWidth="1dp"
+        app:backgroundTint="#ffffff"
         android:text="log out"
+        android:textColor="#f00"
+        app:iconGravity="textStart"
+        app:iconPadding="10dp"
+        app:iconTint="#f00"
         app:layout_constraintBottom_toTopOf="@+id/delete_account"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="10dp" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/delete_account"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        app:strokeColor="#f00"
+        app:strokeWidth="1dp"
+        app:backgroundTint="#ffffff"
         android:text="delete account"
+        android:textColor="#f00"
+        app:icon="@drawable/ic_baseline_delete_24"
+        app:iconGravity="textStart"
+        app:iconPadding="10dp"
+        app:iconTint="#f00"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="10dp" />

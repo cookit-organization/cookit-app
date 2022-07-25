@@ -36,7 +36,7 @@ import retrofit2.Retrofit;
 public class SignUpActivity extends AppCompatActivity {
 
     EditText name_et, email_et, username_et, password_et, confirm_password_et;
-    Button submit_signup;
+    Button submit_signup, goToLogin;
 
     SharedPreferencesObject spo;
 
@@ -53,6 +53,7 @@ public class SignUpActivity extends AppCompatActivity {
         password_et = findViewById(R.id.password);
         confirm_password_et = findViewById(R.id.confirm_password);
         submit_signup = findViewById(R.id.submit_signup);
+        goToLogin = findViewById(R.id.go_to_login);
 
         ProgressBar progressBar = findViewById(R.id.progress_bar);
 
@@ -146,6 +147,13 @@ public class SignUpActivity extends AppCompatActivity {
                 }
             }
         });
+
+        goToLogin.setOnClickListener(v->{
+            startActivity(new Intent(getBaseContext(), LoginActivity.class));
+            finish();
+        });
+
+
     }
 
     private boolean validateEmailAddress(EditText email){
