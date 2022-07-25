@@ -24,7 +24,7 @@ public interface RetrofitInterface {
     Call<Void> newUser(@QueryMap HashMap<String, String> userData);
 
     @PUT("/users/update-user")
-    Call<Void> updateUser(@Query("username") String username, @QueryMap HashMap<String, String> newDAta);
+    Call<Void> updateUser(@Query("username") String username, @QueryMap HashMap<String, String> newData);
 
     @DELETE("/users/delete-user")
     Call<Void> deleteUser(@Query("username") String username); // delete his recipes as well
@@ -47,16 +47,16 @@ public interface RetrofitInterface {
     Call<Void> deleteRecipe(@Query("collectionId") String collectionId, @Query("recipeId") String recipeId);
 
     @GET("/recipes/random-recipes")
-    Call<List<Recipe>> getRandomRecipe();
+    Call<List<Recipe>> recipesByDayState();
 
-    @GET("/recipes/recipe-by-tag")
-    Call<List<Recipe>> getRecipesByTag(@QueryMap List<String> tags);
+    @GET("/recipes/recipes-by-tag")
+    Call<List<Recipe>> getRecipesByTag(@Query("food") String food, @Query("meal_time") String meal_time);
 
     @GET("/recipes/recipes-by-single-tag")
-    Call<List<Recipe>> getRecipeBySingleTag(@Query("tag") String tag);
+    Call<List<Recipe>> getRecipesBySingleTag(@Query("tag") String tag);
 
     @GET("/recipes/recipe-by-name")
-    Call<List<Recipe>> getRecipeByName(@Query("name") String name);
+    Call<List<Recipe>> getRecipesByName(@Query("search") String search);
 
     @POST("/recipes/vote")
     Call<Void> vote(@Query("recipeId") String recipeId,@Query("username") String username, @Query("vote") int vote); // username to store who voted bcuz if he voted already we can't let him fo it again

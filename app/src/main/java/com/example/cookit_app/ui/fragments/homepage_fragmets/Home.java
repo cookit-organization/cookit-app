@@ -79,7 +79,7 @@ public class Home extends Fragment{
 
         if(!tags.isEmpty()){
             for (String tag : tags) {
-                Call<List<Recipe>> call = new Retrofit2Init().retrofitInterface.getRecipeBySingleTag(tag);
+                Call<List<Recipe>> call = new Retrofit2Init().retrofitInterface.getRecipesBySingleTag(tag);
 
                 call.enqueue(new Callback<List<Recipe>>() {
                     @Override

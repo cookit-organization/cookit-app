@@ -1,23 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="10dp">
+
+    <Button
+        android:id="@+id/more_search_options"
+        android:layout_width="52dp"
+        android:layout_height="50dp"
+        android:layout_marginRight="5dp"
+        android:backgroundTint="@color/purple_200"
+        app:icon="@drawable/ic_point_down_24" />
 
     <SearchView
         android:id="@+id/search_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/more_search_options"
+        android:background="@drawable/et_style"
         android:inputType="text"
-        android:queryHint="search for recipes"
-        android:background="@drawable/et_style"/>
+        android:queryHint="search for recipes" />
+
+    <LinearLayout
+        android:id="@+id/search_option_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/more_search_options"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <com.example.cookit_app.generalObjects.MultiSpinner
+                android:id="@+id/food_tags"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="10dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/et_style"
+                android:layout_marginEnd="5dp"/>
+
+            <com.example.cookit_app.generalObjects.MultiSpinner
+                android:id="@+id/meal_time_tags"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="10dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/et_style"/>
+
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/search_tags_button"
+            android:layout_width="52dp"
+            android:layout_height="50dp"
+            app:icon="@drawable/ic_search_24"
+            android:backgroundTint="@color/purple_200"/>
+
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_below="@+id/search_option_container"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp" />
 
-</LinearLayout>
+</RelativeLayout>

@@ -25,10 +25,11 @@
 
         <Button
             android:id="@+id/setting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="52dp"
+            android:layout_height="50dp"
             app:icon="@drawable/ic_baseline_settings_24"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            android:backgroundTint="@color/purple_200"/>
 
         <TextView
             android:id="@+id/profile_name_tv"

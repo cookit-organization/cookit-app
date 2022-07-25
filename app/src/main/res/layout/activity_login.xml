@@ -79,19 +79,13 @@
         android:layout_height="wrap_content"
         android:background="?android:attr/selectableItemBackground"
         android:gravity="center"
-        android:text="you don't have account? go to sign up"
+        android:text="@string/don_t_have_an_account_register_here"
         android:textColor="#000000"
-        android:textSize="10dp"
-        app:backgroundTint="#ffffff"
-        app:iconGravity="textStart"
+        android:textSize="10sp"
+        app:backgroundTint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="30dp" />
-
-<!--    <include-->
-<!--        layout="@layout/include_progressbar"-->
-<!--        android:layout_width="5dp"-->
-<!--        android:layout_height="50dp"-->
-<!--        android:layout_marginTop="20dp"/>-->
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="SmallSp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

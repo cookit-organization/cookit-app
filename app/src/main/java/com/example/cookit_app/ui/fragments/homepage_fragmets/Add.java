@@ -27,6 +27,7 @@ import com.example.cookit_app.R;
 import com.example.cookit_app.generalObjects.Component;
 import com.example.cookit_app.generalObjects.RecyclerViewAdapterForAddComponents;
 import com.example.cookit_app.generalObjects.SharedPreferencesObject;
+import com.example.cookit_app.generalObjects.Tags;
 import com.example.cookit_app.server.Retrofit2Init;
 
 import okhttp3.MediaType;
@@ -46,7 +47,7 @@ import static android.app.Activity.RESULT_OK;
 
 public class Add extends Fragment{
 
-    MultiSpinner tags, meal_time;
+    MultiSpinner foodTags, meal_timeTags;
     RecyclerView recyclerView;
     List<Component> components;
     EditText recipe_name;
@@ -54,6 +55,7 @@ public class Add extends Fragment{
     ImageView recipe_image;
     RecyclerViewAdapterForAddComponents rv;
     Uri selectedImage;
+    Tags tags;
 
     @SuppressLint({"ResourceType", "SetTextI18n"}) @Nullable @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -64,8 +66,8 @@ public class Add extends Fragment{
         recipe_name = view.findViewById(R.id.add_recipe_name_et);
         recipe_name = view.findViewById(R.id.add_recipe_name_et);
         preparation_time = view.findViewById(R.id.add_preparation_time);
-        tags = view.findViewById(R.id.add_tags);
-        meal_time = view.findViewById(R.id.add_meal_time);
+        foodTags = view.findViewById(R.id.add_tags);
+        meal_timeTags = view.findViewById(R.id.add_meal_time);
         recyclerView = view.findViewById(R.id.add_components_rv);
         ImageButton add_component_ib = view.findViewById(R.id.add_component_ib);
         EditText recipe_details = view.findViewById(R.id.add_recipe_details);
@@ -107,8 +109,8 @@ public class Add extends Fragment{
                 correct = false;
             }
 
-            if (meal_time.getSelectedItem() == "pick Meal time") {
-                TextView errorText = (TextView) meal_time.getSelectedView();
+            if (meal_timeTags.getSelectedItem() == tags.mealTimeFirstTag) {
+                TextView errorText = (TextView) meal_timeTags.getSelectedView();
                 errorText.setError("");
                 errorText.setTextColor(Color.RED);
                 errorText.setText("Field is empty");
@@ -138,8 +140,8 @@ public class Add extends Fragment{
                 recipeData.put("author_username", spo.getPreferences().getString(spo.username, "shmuel"));
                 recipeData.put("name", recipeName);
                 recipeData.put("preparation_time", preparation_time.getText().toString());
-                recipeData.put("meal_time", meal_time.getSelectedItem().toString());
-                recipeData.put("tags", tags.getSelectedItem().toString());
+                recipeData.put("meal_time", meal_timeTags.getSelectedItem().toString());
+                recipeData.put("tags", foodTags.getSelectedItem().toString());
                 recipeData.put("description", recipe_details.getText().toString());
 
                 File file = new File(selectedImage.getPath());
@@ -191,18 +193,10 @@ public class Add extends Fragment{
 
     private void createSpinners(){
 
-        List<String> listTags = new ArrayList<>();
-        listTags.add("meat");
-        listTags.add("soup");
-        listTags.add("fish");
+        tags = new Tags();
 
-        List<String> listMealTime = new ArrayList<>();
-        listMealTime.add("Morning");
-        listMealTime.add("Afternoon");
-        listMealTime.add("Night");
-
-        tags.setItems(listTags, "pick Tags", selected -> {});
-        meal_time.setItems(listMealTime, "pick Meal time", selected -> {});
+        foodTags.setItems(tags.food, tags.foodFirstTag, selected -> {});
+        meal_timeTags.setItems(tags.mealTime, tags.mealTimeFirstTag, selected -> {});
     }
 
     public void onSaveInstanceState(@NonNull Bundle outState) {
@@ -211,26 +205,4 @@ public class Add extends Fragment{
         outState.putString("test",recipe_name.getText().toString());
         System.out.println(outState);
     }
-
-//    @Override
-//    public void onPause() {
-//        super.onPause();
-//        onSaveInstanceState(bundle);
-//        Toast.makeText(getContext(), "onPause", Toast.LENGTH_SHORT).show();
-//    }
-
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//
-//        System.out.println(bundle.containsKey("test"));
-//        if (bundle.containsKey("test")) {
-//            Toast.makeText(getContext(), "yes", Toast.LENGTH_SHORT).show();
-//            // Restore value of members from saved state
-//            recipe_name.setText(bundle.getString("test"));
-//        } else {
-//            Toast.makeText(getContext(), "no", Toast.LENGTH_SHORT).show();
-//            // Probably initialize members with default values for a new instance
-//        }
-//    }
 }
