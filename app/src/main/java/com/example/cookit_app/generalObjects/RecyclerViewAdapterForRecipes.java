@@ -38,14 +38,15 @@ public class RecyclerViewAdapterForRecipes extends RecyclerView.Adapter<Recycler
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Recipe recipe = list.get(position);
 
-        //set actions for each recipe card here !
+        /*  set actions for each recipe card here ! */
+
         holder.recipe_name.setText(recipe.recipe.getName());
         holder.author_name.setText(recipe.getAuthor_name());
 
         holder.recipe_image.setOnClickListener(view -> {
-            //take him to recipe
             Intent i = new Intent(context, Recipe.class);
-            //pass recipe
+            i.putExtra("recipe", recipe);
+            context.startActivity(i);
         });
     }
 

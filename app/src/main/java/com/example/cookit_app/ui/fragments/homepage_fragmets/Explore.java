@@ -122,7 +122,7 @@ public class Explore extends Fragment {
 //    public void onPause() {
 //        super.onPause();
 //        Toast.makeText(requireContext(), "onPause", Toast.LENGTH_SHORT).show();
-//        sis.putParcelableArrayList(saveInsKey, (ArrayList<Recipe>) recipeCards);
+//        sis.putParcelableArrayList(saveInsKey, (ArrayList<RecipeActivity>) recipeCards);
 //    }
 
 //    @Override

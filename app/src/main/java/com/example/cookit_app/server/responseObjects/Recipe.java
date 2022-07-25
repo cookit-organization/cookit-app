@@ -32,7 +32,7 @@ public class Recipe implements Parcelable {
 
     @NonNull @Override
     public String toString() {
-        return "Recipe [\n" +
+        return "RecipeActivity [\n" +
                 "_id='" + _id + '\'' +
                 ", author_username='" + author_username + '\'' +
                 ", recipe_name='" + recipe.name + '\'' +
