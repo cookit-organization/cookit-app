@@ -1,15 +1,19 @@
 package com.example.cookit_app.ui.fragments.homepage_fragmets;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
-import android.os.Parcelable;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,13 +28,21 @@ import com.example.cookit_app.generalObjects.Component;
 import com.example.cookit_app.generalObjects.RecyclerViewAdapterForAddComponents;
 import com.example.cookit_app.generalObjects.SharedPreferencesObject;
 import com.example.cookit_app.server.Retrofit2Init;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import com.example.cookit_app.generalObjects.MultiSpinner;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import static android.app.Activity.RESULT_OK;
 
 public class Add extends Fragment{
 
@@ -39,16 +51,15 @@ public class Add extends Fragment{
     List<Component> components;
     EditText recipe_name;
     EditText preparation_time;
-    Bundle bundle;
+    ImageView recipe_image;
     RecyclerViewAdapterForAddComponents rv;
+    Uri selectedImage;
 
     @SuppressLint({"ResourceType", "SetTextI18n"}) @Nullable @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.add_fragment, container, false);
 
         SharedPreferencesObject spo = new SharedPreferencesObject(requireContext());
-
-        bundle = new Bundle();
 
         recipe_name = view.findViewById(R.id.add_recipe_name_et);
         recipe_name = view.findViewById(R.id.add_recipe_name_et);
@@ -62,6 +73,14 @@ public class Add extends Fragment{
 
         ProgressBar progressBar = view.findViewById(R.id.progress_bar);
         progressBar.setVisibility(View.VISIBLE);
+
+        recipe_image = view.findViewById(R.id.recipe_image);
+
+        recipe_image.setOnClickListener(v -> {
+
+          Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+          startActivityForResult(i, 3);
+         });
 
         //todo: arthur => upload an image https://github.com/orgs/cookit-organization/projects/2#card-81988242
 
@@ -111,7 +130,6 @@ public class Add extends Fragment{
                 }
             }
 
-//            correct = true;
             if (correct) {
                 progressBar.setVisibility(View.VISIBLE);
 
@@ -120,28 +138,43 @@ public class Add extends Fragment{
                 recipeData.put("author_username", spo.getPreferences().getString(spo.username, "shmuel"));
                 recipeData.put("name", recipeName);
                 recipeData.put("preparation_time", preparation_time.getText().toString());
-                recipeData.put("mea_time", meal_time.getSelectedItem().toString());
+                recipeData.put("meal_time", meal_time.getSelectedItem().toString());
                 recipeData.put("tags", tags.getSelectedItem().toString());
                 recipeData.put("description", recipe_details.getText().toString());
-                recipeData.put("image", null); // send the actual image
 
-                Call<Void> call = new Retrofit2Init().retrofitInterface.newRecipe(recipeData);
+                File file = new File(selectedImage.getPath());
+
+                RequestBody reqFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+                MultipartBody.Part image = MultipartBody.Part.createFormData("image", file.getName(), reqFile);
+
+                Call<Void> call = new Retrofit2Init().retrofitInterface.newRecipe(recipeData,image);
 
                 call.enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
-
+                        if (response.isSuccessful()) {
+                            Toast.makeText(getContext(), "The recipe has been uploaded!", Toast.LENGTH_SHORT).show();
+                        }
                     }
 
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {
-
+                        Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
         });
 
         return view;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == RESULT_OK && data != null) {
+            selectedImage = data.getData();
+            recipe_image.setImageURI(selectedImage);
+        }
     }
 
     private void addComponent(){

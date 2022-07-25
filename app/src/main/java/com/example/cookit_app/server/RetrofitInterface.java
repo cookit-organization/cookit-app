@@ -4,17 +4,21 @@ import com.example.cookit_app.server.responseObjects.Recipe;
 import com.example.cookit_app.server.responseObjects.User;
 import java.util.HashMap;
 import java.util.List;
+
+import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Part;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 
 public interface RetrofitInterface {
 
-    //user
+    /* USERS */
 
     @POST("/users/new-user")
     Call<Void> newUser(@QueryMap HashMap<String, String> userData);
@@ -31,10 +35,10 @@ public interface RetrofitInterface {
     @POST("/users/log-in-user")
     Call<Void> logInUser(@Query("username") String username, @Query("password") String password);
 
-    //recipes
+    /* RECIPES */
 
-    @POST("/recipes/new-recipe")
-    Call<Void> newRecipe(@QueryMap HashMap<String, String> recipeData);
+    @Multipart @POST("/recipes/new-recipe")
+    Call<Void> newRecipe(@QueryMap HashMap<String, String> recipeData, @Part MultipartBody.Part image);
 
     @PUT("/recipes/update-recipe")
     Call<Void> updateRecipe(@Query("collectionId") String collectionId, @Query("recipeId") String recipeId, @QueryMap HashMap<String, String> newData);
