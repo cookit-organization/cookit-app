@@ -20,20 +20,28 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static java.net.HttpURLConnection.HTTP_FORBIDDEN;
+
 public class LoginActivity extends AppCompatActivity {
 
-    @RequiresApi(api = Build.VERSION_CODES.O) @Override
+    EditText username_et, password_et;
+    final String fieldIsEmpty = "Field is Empty";
+    SharedPreferencesObject spo;
+    ProgressBar progressBar;
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        SharedPreferencesObject spo = new SharedPreferencesObject(this);
+        spo = new SharedPreferencesObject(this);
 
-        EditText username_et = findViewById(R.id.username);
-        EditText password_et = findViewById(R.id.password);
+        username_et = findViewById(R.id.username);
+        password_et = findViewById(R.id.password);
         Button submit_login = findViewById(R.id.submit_login);
         Button goToSignUp = findViewById(R.id.go_to_sign_up);
-        ProgressBar progressBar = findViewById(R.id.progress_bar);
+        progressBar = findViewById(R.id.progress_bar);
 
         submit_login.setOnClickListener(view -> {
 
@@ -42,53 +50,53 @@ public class LoginActivity extends AppCompatActivity {
             String username = username_et.getText().toString();
             String password = password_et.getText().toString();
 
-            if(!username.isEmpty() && !password.isEmpty()){
+            boolean isValidInput = validateUserInput(username, password);
 
-                //encrypting username and password with RSA
-//                try{
-//                    String encryptedUsername = Base64.getEncoder().encodeToString(RSA.encrypt(username, /*TODO ADD A REAL KEY*/"publicKey"));
-//                    Log.d("tesTag", encryptedUsername);
-//                    String encryptedPassword = Base64.getEncoder().encodeToString(RSA.encrypt(username, /*TODO ADD A REAL KEY*/"publicKey"));
-//                    Log.d("tesTag", encryptedPassword);
-
-                    //sending the request
-                    Call<Void> call = new Retrofit2Init().retrofitInterface.logInUser(username, password);
-                    call.enqueue(new Callback<Void>() {
-                        @Override
-                        public void onResponse(Call<Void> call, Response<Void> response) {
-                            progressBar.setVisibility(View.GONE);
-                            if(response.isSuccessful()){
-                                spo.getPreferences().edit().putString(spo.username, username).apply();
-                                startActivity(new Intent(getBaseContext(), MainActivity.class));
-                            }else if (response.code() == 403){
-                                Toast.makeText(getBaseContext(), "Incorrect username or password.", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<Void> call, Throwable t) {
-                            progressBar.setVisibility(View.GONE);
-                            Toast.makeText(getBaseContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
-//                } catch (NoSuchAlgorithmException e) {
-//                    System.err.println(e.getMessage());
-//                } catch (NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException | BadPaddingException e) {
-//                    e.printStackTrace();
-//                }
-
-            }else if(username.isEmpty()){
-                username_et.setError("Field is empty");
-            }else {
-                password_et.setError("Field is empty");
+            if (isValidInput) {
+                sendRequest(username, password);
             }
         });
 
-        goToSignUp.setOnClickListener(v->{
+        goToSignUp.setOnClickListener(v -> {
             startActivity(new Intent(getBaseContext(), SignUpActivity.class));
             finish();
         });
+    }
 
+    private void sendRequest(String username, String password) {
+        new Retrofit2Init().retrofitInterface.logInUser(username, password)
+                .enqueue(new Callback<Void>() {
+                    @Override
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+                        progressBar.setVisibility(View.GONE);
+                        if (response.isSuccessful()) {
+                            spo.getPreferences().edit().putString(spo.username, username).apply();
+                            startActivity(new Intent(getBaseContext(), MainActivity.class));
+                        } else if (response.code() == HTTP_FORBIDDEN) {
+                            makeToast("Incorrect username or password.");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Void> call, Throwable t) {
+                        progressBar.setVisibility(View.GONE);
+                        makeToast(t.getMessage());
+                    }
+                });
+    }
+
+    private boolean validateUserInput(String username, String password) {
+        if (username.trim().isEmpty()) {
+            username_et.setError(fieldIsEmpty);
+            return false;
+        } else if (password.trim().isEmpty()) {
+            password_et.setError(fieldIsEmpty);
+            return false;
+        }
+        return true;
+    }
+
+    private void makeToast(String text) {
+        Toast.makeText(getBaseContext(), text, Toast.LENGTH_LONG).show();
     }
 }

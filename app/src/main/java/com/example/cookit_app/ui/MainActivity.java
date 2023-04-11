@@ -10,19 +10,17 @@ import com.example.cookit_app.R;
 import com.example.cookit_app.ui.fragments.homepage_fragmets.Add;
 import com.example.cookit_app.ui.fragments.homepage_fragmets.Explore;
 import com.example.cookit_app.ui.fragments.homepage_fragmets.Home;
-import com.example.cookit_app.utils.SharedPreferencesObject;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-    @SuppressLint("NonConstantResourceId") @Override
+    @SuppressLint("NonConstantResourceId")
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SharedPreferencesObject spo = new SharedPreferencesObject(this);
-
-        //need test
+//        SharedPreferencesObject spo = new SharedPreferencesObject(this);
 //        if(spo.getPreferences().getString(spo.username, null) == null)
 //            startActivity(new Intent(this, LoginActivity.class));
 
@@ -32,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(item -> {
             Fragment selectedFragment = null;
-
             switch (item.getItemId()) {
                 case R.id.nav_home:
                     selectedFragment = new Home();
@@ -48,8 +45,6 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
             return true;
         });
-
-        //default: explore fragment
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Explore()).commit();
         }

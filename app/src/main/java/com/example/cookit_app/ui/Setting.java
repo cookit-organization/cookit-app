@@ -30,6 +30,8 @@ public class Setting extends AppCompatActivity {
     TextView name, bio;
     AlertDialog dialog;
     AlertDialog.Builder builder;
+    String DEFAULT_TESTING_PASSWORD = "1234";
+    String yes = "yes", no = "no";
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -72,12 +74,12 @@ public class Setting extends AppCompatActivity {
 
             builder.setView(layout);
 
-            builder.setPositiveButton("yes", (dialogInterface, i) -> {
+            builder.setPositiveButton(yes, (dialogInterface, i) -> {
                 startActivity(new Intent(getBaseContext(), LoginActivity.class));
                 finishAffinity();
             });
 
-            builder.setNegativeButton("no", (dialogInterface, i) -> {
+            builder.setNegativeButton(no, (dialogInterface, i) -> {
 
             });
 
@@ -112,8 +114,8 @@ public class Setting extends AppCompatActivity {
 
             builder.setView(layout);
 
-            builder.setPositiveButton("yes", (dialogInterface, i) -> {
-                if (et.getText().toString().equals("1234")) {
+            builder.setPositiveButton(yes, (dialogInterface, i) -> {
+                if (et.getText().toString().equals(DEFAULT_TESTING_PASSWORD)) {
                     //delete account
                     startActivity(new Intent(getBaseContext(), SignUpActivity.class));
                     finishAffinity();
@@ -122,7 +124,7 @@ public class Setting extends AppCompatActivity {
                 }
             });
 
-            builder.setNegativeButton("no", (dialogInterface, i) -> {
+            builder.setNegativeButton(no, (dialogInterface, i) -> {
 
             });
 
@@ -161,9 +163,9 @@ public class Setting extends AppCompatActivity {
 
             builder.setView(layout);
 
-            builder.setPositiveButton("yes", (dialogInterface, i) -> name.setText(et.getText().toString()));
+            builder.setPositiveButton(yes, (dialogInterface, i) -> name.setText(et.getText().toString()));
 
-            builder.setNegativeButton("no", (dialogInterface, i) -> {
+            builder.setNegativeButton(no, (dialogInterface, i) -> {
 
             });
 
@@ -198,9 +200,9 @@ public class Setting extends AppCompatActivity {
 
             builder.setView(layout);
 
-            builder.setPositiveButton("yes", (dialogInterface, i) -> bio.setText(et.getText().toString()));
+            builder.setPositiveButton(yes, (dialogInterface, i) -> bio.setText(et.getText().toString()));
 
-            builder.setNegativeButton("no", (dialogInterface, i) -> {
+            builder.setNegativeButton(no, (dialogInterface, i) -> {
 
             });
 
@@ -212,7 +214,9 @@ public class Setting extends AppCompatActivity {
             builder = new AlertDialog.Builder(Setting.this);
 
             LinearLayout layout = new LinearLayout(this);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT);
             layout.setOrientation(LinearLayout.VERTICAL);
             layout.setLayoutParams(params);
 
@@ -245,20 +249,17 @@ public class Setting extends AppCompatActivity {
             layout.addView(currentPassword, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
             layout.addView(newPassword, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
 
-
             builder.setView(layout);
 
-            builder.setPositiveButton("yes", (dialogInterface, i) -> {
-                //check if this current password
-                if (currentPassword1.getText().toString().equals("1234")) {
-                    //change password
-                    Toast.makeText(this, "password change to " + newPassword1.getText().toString(), Toast.LENGTH_SHORT).show();
+            builder.setPositiveButton(yes, (dialogInterface, i) -> {
+                if (currentPassword1.getText().toString().equals(DEFAULT_TESTING_PASSWORD)) {
+                    makeToast("Password changed to: " + newPassword1.getText().toString());
                 } else {
-                    Toast.makeText(Setting.this, "wrong password", Toast.LENGTH_SHORT).show();
+                    makeToast("Wrong Password");
                 }
             });
 
-            builder.setNegativeButton("no", (dialogInterface, i) -> {
+            builder.setNegativeButton(no, (dialogInterface, i) -> {
 
             });
 
@@ -284,5 +285,9 @@ public class Setting extends AppCompatActivity {
         });
         favorite_categories.setItems(listFavoriteCategories, "favorite categories", selected -> {
         });
+    }
+
+    private void makeToast(String text) {
+        Toast.makeText(getBaseContext(), text, Toast.LENGTH_LONG).show();
     }
 }

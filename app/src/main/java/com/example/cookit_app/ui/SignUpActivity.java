@@ -73,28 +73,27 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void sendRequest(HashMap<String, String> userData) {
-        Call<Void> call = new Retrofit2Init().retrofitInterface.newUser(userData);
-
-        call.enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                progressBar.setVisibility(View.GONE);
-                if (response.isSuccessful()) {
-                    makeToast("Signed up successfully.");
-                    spo.getPreferences().edit().putBoolean(spo.isSignedUp, true).apply();
-                    spo.getPreferences().edit().putString(
-                            spo.username, username_et.getText().toString()).apply();
-                } else {
-                    makeToast(response.code() + "\n" + response.message());
+        new Retrofit2Init().retrofitInterface.newUser(userData)
+            .enqueue(new Callback<Void>() {
+                @Override
+                public void onResponse(Call<Void> call, Response<Void> response) {
+                    progressBar.setVisibility(View.GONE);
+                    if (response.isSuccessful()) {
+                        makeToast("Signed up successfully.");
+                        spo.getPreferences().edit().putBoolean(spo.isSignedUp, true).apply();
+                        spo.getPreferences().edit().putString(
+                                spo.username, username_et.getText().toString()).apply();
+                    } else {
+                        makeToast(response.code() + "\n" + response.message());
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {
-                progressBar.setVisibility(View.GONE);
-                makeToast(t.getMessage());
-            }
-        });
+                @Override
+                public void onFailure(Call<Void> call, Throwable t) {
+                    progressBar.setVisibility(View.GONE);
+                    makeToast(t.getMessage());
+                }
+            });
     }
 
     private boolean validateUserInput(String name, String username,
