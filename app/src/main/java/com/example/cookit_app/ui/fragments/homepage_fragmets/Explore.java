@@ -35,35 +35,37 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static java.net.HttpURLConnection.HTTP_NOT_FOUND;
+
 public class Explore extends Fragment {
 
+    final String fieldIsEmpty = "Field is Empty";
     List<Recipe> recipeCards;
     RecyclerView recyclerView;
     RetrofitInterface retrofitInterface;
     MultiSpinner foodTags, mealTimeTags;
     Tags tags;
 
-    @SuppressLint("SetTextI18n")
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    @SuppressLint("SetTextI18n") @Nullable @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.explore_fragment, container, false);
 
         retrofitInterface = new Retrofit2Init().retrofitInterface;
         recyclerView = view.findViewById(R.id.rv_container);
         recipeCards = new ArrayList<>();
-        recyclerViewAdapter(); // set up the recyclerview
+        recyclerViewAdapter();
 
-        LinearLayout ll = view.findViewById(R.id.search_option_container);
+        LinearLayout searchOptionContainer = view.findViewById(R.id.search_option_container);
 
         MaterialButton search_options = view.findViewById(R.id.more_search_options);
         search_options.setOnClickListener(v -> {
 
-            if (ll.getVisibility() == View.GONE) {
-                ll.setVisibility(View.VISIBLE);
+            if (searchOptionContainer.getVisibility() == View.GONE) {
+                searchOptionContainer.setVisibility(View.VISIBLE);
                 search_options.setIconResource(R.drawable.ic_point_up_24);
             } else {
-                ll.setVisibility(View.GONE);
+                searchOptionContainer.setVisibility(View.GONE);
                 search_options.setIconResource(R.drawable.ic_point_down_24);
             }
 
@@ -73,24 +75,13 @@ public class Explore extends Fragment {
 
             Button search = view.findViewById(R.id.search_tags_button);
             search.setOnClickListener(v1 -> {
-                boolean readyToSearch = true;
-                if (mealTimeTags.getSelectedItem() == tags.mealTimeFirstTag) {
-                    TextView errorText = (TextView) mealTimeTags.getSelectedView();
-                    errorText.setError("");
-                    errorText.setTextColor(Color.RED);
-                    errorText.setText("Field is empty!");
-                    readyToSearch = false;
-                }
-                if (foodTags.getSelectedItem() == tags.foodFirstTag) {
-                    TextView errorText = (TextView) foodTags.getSelectedView();
-                    errorText.setError("");
-                    errorText.setTextColor(Color.RED);
-                    errorText.setText("Field is empty!");
-                    readyToSearch = false;
-                }
-
-                if (readyToSearch) {
-                    getRecipes(retrofitInterface.getRecipesByTag(foodTags.getSelectedItem().toString(), mealTimeTags.getSelectedItem().toString()), false);
+                boolean isValidInput = validateUserInput();
+                if (isValidInput) {
+                    getRecipes(
+                            retrofitInterface.getRecipesByTag(
+                            foodTags.getSelectedItem().toString(),
+                            mealTimeTags.getSelectedItem().toString()),
+                            false);
                 }
             });
         });
@@ -104,9 +95,7 @@ public class Explore extends Fragment {
             }
 
             @Override
-            public boolean onQueryTextChange(String s) {
-                //we can use this to get the rest of the word or
-                //to give him suggestions for recipes that has the same prefix
+            public boolean onQueryTextChange(String ignored) {
                 return false;
             }
         });
@@ -115,12 +104,28 @@ public class Explore extends Fragment {
         return view;
     }
 
+    private boolean validateUserInput() {
+        if (mealTimeTags.getSelectedItem() == tags.mealTimeFirstTag) {
+            TextView errorText = (TextView) mealTimeTags.getSelectedView();
+            errorText.setError("");
+            errorText.setTextColor(Color.RED);
+            errorText.setText(fieldIsEmpty);
+            return false;
+        }
+        if (foodTags.getSelectedItem() == tags.foodFirstTag) {
+            TextView errorText = (TextView) foodTags.getSelectedView();
+            errorText.setError("");
+            errorText.setTextColor(Color.RED);
+            errorText.setText(fieldIsEmpty);
+            return false;
+        }
+        return true;
+    }
+
     private void createSpinners() {
         tags = new Tags();
-        foodTags.setItems(tags.food, tags.foodFirstTag, selected -> {
-        });
-        mealTimeTags.setItems(tags.mealTime, tags.mealTimeFirstTag, selected -> {
-        });
+        foodTags.setItems(tags.food, tags.foodFirstTag, selected -> {});
+        mealTimeTags.setItems(tags.mealTime, tags.mealTimeFirstTag, selected -> {});
     }
 
     private void getRecipes(Call<List<Recipe>> call, boolean add) {
@@ -134,15 +139,15 @@ public class Explore extends Fragment {
                     }
                     recipeCards.addAll(response.body());
                     updateAdapter();
-                } else if (response.code() == 404) {
-                    Toast.makeText(requireContext(), "Not Found.", Toast.LENGTH_SHORT).show();
+                } else if (response.code() == HTTP_NOT_FOUND) {
+                    makeToast("Not Found.");
                 } else
-                    Toast.makeText(requireContext(), response.message(), Toast.LENGTH_SHORT).show();
+                    makeToast(response.message());
             }
 
             @Override
             public void onFailure(Call<List<Recipe>> call, Throwable t) {
-                Toast.makeText(requireContext(), "Sorry something went wrong. we are on it !", Toast.LENGTH_SHORT).show();
+                makeToast("Sorry something went wrong. we are on it !");
             }
         });
     }
@@ -150,10 +155,15 @@ public class Explore extends Fragment {
     private void recyclerViewAdapter() {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, 100, false));
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(
+                2, 100, false));
     }
 
     private void updateAdapter() {
         recyclerView.setAdapter(new RecyclerViewAdapterForRecipes(getContext(), recipeCards));
+    }
+
+    private void makeToast(String text) {
+        Toast.makeText(getContext(), text, Toast.LENGTH_LONG).show();
     }
 }

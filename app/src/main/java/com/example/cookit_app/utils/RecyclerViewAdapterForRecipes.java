@@ -8,8 +8,10 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.cookit_app.R;
 import com.example.cookit_app.backend.response.Recipe;
 import com.example.cookit_app.ui.RecipeActivity;
@@ -30,7 +32,8 @@ public class RecyclerViewAdapterForRecipes extends RecyclerView.Adapter<Recycler
         this.inflater = LayoutInflater.from(context);
     }
 
-    @NonNull @Override
+    @NonNull
+    @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.recipe_card, parent, false);
         return new ViewHolder(view);
@@ -61,7 +64,7 @@ public class RecyclerViewAdapterForRecipes extends RecyclerView.Adapter<Recycler
         return list.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView recipe_image;
         ImageButton save_button;

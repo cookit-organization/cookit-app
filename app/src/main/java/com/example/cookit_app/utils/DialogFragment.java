@@ -1,6 +1,5 @@
 package com.example.cookit_app.utils;
 
-import static android.app.Activity.RESULT_OK;
 import android.Manifest;
 import android.content.ContentValues;
 import android.content.Intent;
@@ -17,9 +16,13 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import com.example.cookit_app.R;
+
+import static android.app.Activity.RESULT_OK;
 
 public class DialogFragment extends androidx.fragment.app.DialogFragment {
 
@@ -52,14 +55,14 @@ public class DialogFragment extends androidx.fragment.app.DialogFragment {
         });
 
         camera.setOnClickListener(v -> {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-                if (getContext().checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED || getContext().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (getContext().checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED || getContext().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
                     String[] permission = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
                     requestPermissions(permission, PERMISSION_C0DE);
-                }else {
+                } else {
                     openCamera();
                 }
-            }else {
+            } else {
                 openCamera();
             }
 
@@ -75,7 +78,7 @@ public class DialogFragment extends androidx.fragment.app.DialogFragment {
         values.put(MediaStore.Images.Media.DESCRIPTION, "From the Camera");
         image_uri = getContext().getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
 
-        Intent camera  = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         camera.putExtra(MediaStore.EXTRA_OUTPUT, image_uri);
 
         startActivityForResult(camera, 100);
@@ -84,11 +87,11 @@ public class DialogFragment extends androidx.fragment.app.DialogFragment {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode){
-            case PERMISSION_C0DE:{
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+        switch (requestCode) {
+            case PERMISSION_C0DE: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     openCamera();
-                }else {
+                } else {
                     Toast.makeText(getActivity(), "permission denied...", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -117,7 +120,7 @@ public class DialogFragment extends androidx.fragment.app.DialogFragment {
                     button.setImageURI(selectedImageUri);
                 }
 
-            }else {
+            } else {
                 button.setImageURI(image_uri);
             }
         }
