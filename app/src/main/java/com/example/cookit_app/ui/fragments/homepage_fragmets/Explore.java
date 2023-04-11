@@ -90,7 +90,10 @@ public class Explore extends Fragment {
                 }
 
                 if (readyToSearch) {
-                    getRecipes(retrofitInterface.getRecipesByTag(foodTags.getSelectedItem().toString(), mealTimeTags.getSelectedItem().toString()), false);
+                    getRecipes(retrofitInterface.getRecipesByTag(
+                            foodTags.getSelectedItem().toString(),
+                            mealTimeTags.getSelectedItem().toString()),
+                            false);
                 }
             });
         });
@@ -142,7 +145,10 @@ public class Explore extends Fragment {
 
             @Override
             public void onFailure(Call<List<Recipe>> call, Throwable t) {
-                Toast.makeText(requireContext(), "Sorry something went wrong. we are on it !", Toast.LENGTH_SHORT).show();
+                Toast.makeText(
+                        requireContext(),
+                        "Sorry something went wrong. we are on it !",
+                        Toast.LENGTH_SHORT).show();
             }
         });
     }

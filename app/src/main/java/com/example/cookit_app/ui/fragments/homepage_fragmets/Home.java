@@ -16,53 +16,36 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.cookit_app.R;
-import com.example.cookit_app.utils.RecyclerViewAdapterForRecipes;
-import com.example.cookit_app.utils.SharedPreferencesObject;
 import com.example.cookit_app.backend.Retrofit2Init;
 import com.example.cookit_app.backend.response.Recipe;
 import com.example.cookit_app.ui.Setting;
+import com.example.cookit_app.utils.RecyclerViewAdapterForRecipes;
+import com.example.cookit_app.utils.SharedPreferencesObject;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Home extends Fragment{
+public class Home extends Fragment {
 
     List<Recipe> recipeCards;
     LinearLayout ll;
     Button setting;
 
-    @SuppressLint("SetTextI18n") @Nullable @Override
+    @SuppressLint("SetTextI18n")
+    @Nullable
+    @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.home_fragment, container, false);
 
-        setting= view.findViewById(R.id.setting);
-        setting.setOnClickListener(v -> {
-
-            startActivity(new Intent(getContext(), Setting.class));
-
-        });
-
-        //check from sharedPreferences list for example : [meat, soup, etc..]
-        //take from database the wanted categories (from general data)
-
-        //make list of recyclerViews for the categories
-        /*
-        *
-        * meat ->
-        * 1 2 3 4 5 6 7
-        *
-        * soup ->
-        * 1 2 3 4 5 6 7
-        *
-        * fish ->
-        * 1 2 3 4 5 6 7
-        *
-        * */
+        setting = view.findViewById(R.id.setting);
+        setting.setOnClickListener(v -> startActivity(new Intent(getContext(), Setting.class)));
 
         recipeCards = new ArrayList<>();
 
@@ -77,7 +60,7 @@ public class Home extends Fragment{
 
         List<String> tags = new ArrayList<>(spo.getPreferences().getStringSet(spo.wantedTagsList, new HashSet<>()));
 
-        if(!tags.isEmpty()){
+        if (!tags.isEmpty()) {
             for (String tag : tags) {
                 Call<List<Recipe>> call = new Retrofit2Init().retrofitInterface.getRecipesBySingleTag(tag);
 
@@ -97,16 +80,16 @@ public class Home extends Fragment{
                         Toast.makeText(getContext(), "Sorry something went wrong. we are on it !", Toast.LENGTH_SHORT).show();
                         //TODO : only if we have time -> send error to errorsServer (a server for error handling
 
-                //                        ShapeableImageView si = new ShapeableImageView(requireContext());
-                //                        si.setLayoutParams(new LinearLayout.LayoutParams(
-                //                                LinearLayout.LayoutParams.MATCH_PARENT,
-                //                                LinearLayout.LayoutParams.MATCH_PARENT
-                //                        ));
-                //                        si.setImageResource(R.drawable.cookit_app_logo);
-                //                        si.setShapeAppearanceModel(si.getShapeAppearanceModel().toBuilder().
-                //                                setTopRightCorner(CornerFamily.ROUNDED,30).build());
-                //                        ll.addView(si);
-                //                        ll.setGravity(Gravity.CENTER_VERTICAL);
+                        //                        ShapeableImageView si = new ShapeableImageView(requireContext());
+                        //                        si.setLayoutParams(new LinearLayout.LayoutParams(
+                        //                                LinearLayout.LayoutParams.MATCH_PARENT,
+                        //                                LinearLayout.LayoutParams.MATCH_PARENT
+                        //                        ));
+                        //                        si.setImageResource(R.drawable.cookit_app_logo);
+                        //                        si.setShapeAppearanceModel(si.getShapeAppearanceModel().toBuilder().
+                        //                                setTopRightCorner(CornerFamily.ROUNDED,30).build());
+                        //                        ll.addView(si);
+                        //                        ll.setGravity(Gravity.CENTER_VERTICAL);
                     }
                 });
             }
@@ -115,7 +98,7 @@ public class Home extends Fragment{
         return view;
     }
 
-    private void createList(String tag){
+    private void createList(String tag) {
         TextView textView = new TextView(getContext());
         textView.setText(tag);
         textView.setTextSize(30);
@@ -133,7 +116,7 @@ public class Home extends Fragment{
         recyclerViewAdapter(rv);
     }
 
-    private void recyclerViewAdapter(RecyclerView recyclerView){
+    private void recyclerViewAdapter(RecyclerView recyclerView) {
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false));
