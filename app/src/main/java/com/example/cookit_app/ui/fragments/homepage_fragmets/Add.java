@@ -84,8 +84,6 @@ public class Add extends Fragment{
           startActivityForResult(i, 3);
          });
 
-        //todo: arthur => upload an image https://github.com/orgs/cookit-organization/projects/2#card-81988242
-
         // spinners
         createSpinners();
 
