@@ -122,4 +122,8 @@ public class Home extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setAdapter(new RecyclerViewAdapterForRecipes(getContext(), recipeCards));
     }
+
+    private void makeToast(String text) {
+        Toast.makeText(getContext(), text, Toast.LENGTH_LONG).show();
+    }
 }
