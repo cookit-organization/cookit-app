@@ -1,7 +1,7 @@
-package com.example.cookit_app.server;
+package com.example.cookit_app.backend;
 
-import com.example.cookit_app.server.responseObjects.Recipe;
-import com.example.cookit_app.server.responseObjects.User;
+import com.example.cookit_app.backend.response.Recipe;
+import com.example.cookit_app.backend.response.User;
 import java.util.HashMap;
 import java.util.List;
 

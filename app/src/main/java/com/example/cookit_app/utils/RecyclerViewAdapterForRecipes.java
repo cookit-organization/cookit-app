@@ -1,4 +1,4 @@
-package com.example.cookit_app.generalObjects;
+package com.example.cookit_app.utils;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.cookit_app.R;
-import com.example.cookit_app.server.responseObjects.Recipe;
+import com.example.cookit_app.backend.response.Recipe;
 import com.example.cookit_app.ui.RecipeActivity;
 
 import java.io.Serializable;

@@ -1,4 +1,4 @@
-package com.example.cookit_app.generalObjects;
+package com.example.cookit_app.utils;
 
 public class Component {
 

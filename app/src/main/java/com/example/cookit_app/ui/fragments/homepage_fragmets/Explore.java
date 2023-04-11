@@ -3,7 +3,6 @@ package com.example.cookit_app.ui.fragments.homepage_fragmets;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,18 +12,20 @@ import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.cookit_app.R;
-import com.example.cookit_app.generalObjects.GridSpacingItemDecoration;
-import com.example.cookit_app.generalObjects.MultiSpinner;
-import com.example.cookit_app.generalObjects.RecyclerViewAdapterForRecipes;
-import com.example.cookit_app.generalObjects.Tags;
-import com.example.cookit_app.server.Retrofit2Init;
-import com.example.cookit_app.server.RetrofitInterface;
-import com.example.cookit_app.server.responseObjects.Recipe;
+import com.example.cookit_app.utils.GridSpacingItemDecoration;
+import com.example.cookit_app.utils.MultiSpinner;
+import com.example.cookit_app.utils.RecyclerViewAdapterForRecipes;
+import com.example.cookit_app.utils.Tags;
+import com.example.cookit_app.backend.Retrofit2Init;
+import com.example.cookit_app.backend.RetrofitInterface;
+import com.example.cookit_app.backend.response.Recipe;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
@@ -42,7 +43,9 @@ public class Explore extends Fragment {
     MultiSpinner foodTags, mealTimeTags;
     Tags tags;
 
-    @SuppressLint("SetTextI18n") @Nullable @Override
+    @SuppressLint("SetTextI18n")
+    @Nullable
+    @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.explore_fragment, container, false);
 
@@ -56,10 +59,10 @@ public class Explore extends Fragment {
         MaterialButton search_options = view.findViewById(R.id.more_search_options);
         search_options.setOnClickListener(v -> {
 
-            if(ll.getVisibility() == View.GONE) {
+            if (ll.getVisibility() == View.GONE) {
                 ll.setVisibility(View.VISIBLE);
                 search_options.setIconResource(R.drawable.ic_point_up_24);
-            }else {
+            } else {
                 ll.setVisibility(View.GONE);
                 search_options.setIconResource(R.drawable.ic_point_down_24);
             }
@@ -86,7 +89,7 @@ public class Explore extends Fragment {
                     readyToSearch = false;
                 }
 
-                if(readyToSearch) {
+                if (readyToSearch) {
                     getRecipes(retrofitInterface.getRecipesByTag(foodTags.getSelectedItem().toString(), mealTimeTags.getSelectedItem().toString()), false);
                 }
             });
@@ -99,6 +102,7 @@ public class Explore extends Fragment {
                 getRecipes(retrofitInterface.getRecipesByName(search), false);
                 return false;
             }
+
             @Override
             public boolean onQueryTextChange(String s) {
                 //we can use this to get the rest of the word or
@@ -111,27 +115,28 @@ public class Explore extends Fragment {
         return view;
     }
 
-    private void createSpinners(){
+    private void createSpinners() {
         tags = new Tags();
-        foodTags.setItems(tags.food, tags.foodFirstTag, selected -> {});
-        mealTimeTags.setItems(tags.mealTime, tags.mealTimeFirstTag, selected -> {});
+        foodTags.setItems(tags.food, tags.foodFirstTag, selected -> {
+        });
+        mealTimeTags.setItems(tags.mealTime, tags.mealTimeFirstTag, selected -> {
+        });
     }
 
-    private void getRecipes(Call<List<Recipe>> call, boolean add){
+    private void getRecipes(Call<List<Recipe>> call, boolean add) {
 
         call.enqueue(new Callback<List<Recipe>>() {
             @Override
             public void onResponse(Call<List<Recipe>> call, Response<List<Recipe>> response) {
-                if(response.isSuccessful()) {
-                    if(!add) {
+                if (response.isSuccessful()) {
+                    if (!add) {
                         recipeCards.clear();
                     }
                     recipeCards.addAll(response.body());
-                   updateAdapter();
-                }else if (response.code() == 404) {
+                    updateAdapter();
+                } else if (response.code() == 404) {
                     Toast.makeText(requireContext(), "Not Found.", Toast.LENGTH_SHORT).show();
-                }
-                else
+                } else
                     Toast.makeText(requireContext(), response.message(), Toast.LENGTH_SHORT).show();
             }
 
@@ -142,7 +147,7 @@ public class Explore extends Fragment {
         });
     }
 
-    private void recyclerViewAdapter(){
+    private void recyclerViewAdapter() {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, 100, false));

@@ -1,4 +1,4 @@
-package com.example.cookit_app.server.responseObjects;
+package com.example.cookit_app.backend.response;
 
 import androidx.annotation.NonNull;
 import com.google.gson.annotations.SerializedName;

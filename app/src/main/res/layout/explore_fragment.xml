@@ -38,7 +38,7 @@
             android:layout_marginTop="5dp"
             android:orientation="horizontal">
 
-            <com.example.cookit_app.generalObjects.MultiSpinner
+            <com.example.cookit_app.utils.MultiSpinner
                 android:id="@+id/food_tags"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
                 android:background="@drawable/et_style"
                 android:layout_marginEnd="5dp"/>
 
-            <com.example.cookit_app.generalObjects.MultiSpinner
+            <com.example.cookit_app.utils.MultiSpinner
                 android:id="@+id/meal_time_tags"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

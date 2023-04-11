@@ -1,4 +1,4 @@
-package com.example.cookit_app.generalObjects;
+package com.example.cookit_app.utils;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

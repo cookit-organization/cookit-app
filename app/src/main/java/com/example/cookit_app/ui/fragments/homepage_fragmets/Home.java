@@ -17,10 +17,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.cookit_app.R;
-import com.example.cookit_app.generalObjects.RecyclerViewAdapterForRecipes;
-import com.example.cookit_app.generalObjects.SharedPreferencesObject;
-import com.example.cookit_app.server.Retrofit2Init;
-import com.example.cookit_app.server.responseObjects.Recipe;
+import com.example.cookit_app.utils.RecyclerViewAdapterForRecipes;
+import com.example.cookit_app.utils.SharedPreferencesObject;
+import com.example.cookit_app.backend.Retrofit2Init;
+import com.example.cookit_app.backend.response.Recipe;
 import com.example.cookit_app.ui.Setting;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.example.cookit_app.generalObjects;
+package com.example.cookit_app.utils;
 
 import static android.app.Activity.RESULT_OK;
 import android.Manifest;

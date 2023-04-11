@@ -8,9 +8,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cookit_app.R;
-import com.example.cookit_app.server.responseObjects.Recipe;
-
-import java.io.Serializable;
+import com.example.cookit_app.backend.response.Recipe;
 
 public class RecipeActivity extends AppCompatActivity {
 

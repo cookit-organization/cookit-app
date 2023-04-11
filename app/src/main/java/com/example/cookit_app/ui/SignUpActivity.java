@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -15,23 +14,14 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.cookit_app.R;
-import com.example.cookit_app.generalObjects.RSA;
-import com.example.cookit_app.generalObjects.SharedPreferencesObject;
-import com.example.cookit_app.server.Retrofit2Init;
+import com.example.cookit_app.utils.SharedPreferencesObject;
+import com.example.cookit_app.backend.Retrofit2Init;
 
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
 import java.util.HashMap;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class SignUpActivity extends AppCompatActivity {
 

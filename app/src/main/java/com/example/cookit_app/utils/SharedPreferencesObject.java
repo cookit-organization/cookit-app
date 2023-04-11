@@ -1,4 +1,4 @@
-package com.example.cookit_app.generalObjects;
+package com.example.cookit_app.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;

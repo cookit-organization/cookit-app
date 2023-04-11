@@ -13,7 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.cookit_app.R;
-import com.example.cookit_app.generalObjects.MultiSpinner;
+import com.example.cookit_app.utils.MultiSpinner;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.imageview.ShapeableImageView;
 import java.util.ArrayList;

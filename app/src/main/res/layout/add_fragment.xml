@@ -104,7 +104,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/et_container"
                 tools:ignore="MissingConstraints">
 
-                <com.example.cookit_app.generalObjects.MultiSpinner
+                <com.example.cookit_app.utils.MultiSpinner
                     android:id="@+id/add_tags"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -112,7 +112,7 @@
                     android:padding="10dp"
                     android:background="@drawable/et_style"/>
 
-                <com.example.cookit_app.generalObjects.MultiSpinner
+                <com.example.cookit_app.utils.MultiSpinner
                     android:id="@+id/add_meal_time"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

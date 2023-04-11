@@ -1,4 +1,4 @@
-package com.example.cookit_app.server;
+package com.example.cookit_app.backend;
 
 import android.annotation.SuppressLint;
 import com.google.gson.GsonBuilder;
