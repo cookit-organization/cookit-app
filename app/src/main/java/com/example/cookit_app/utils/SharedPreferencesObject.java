@@ -24,7 +24,7 @@ public class SharedPreferencesObject {
         editor = preferences.edit();
     }
 
-    public SharedPreferences getPreferences(){
+    public SharedPreferences getPreferences() {
         return preferences;
     }
 

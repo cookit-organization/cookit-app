@@ -1,8 +1,5 @@
 package com.example.cookit_app.ui;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,9 +10,12 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.cookit_app.R;
-import com.example.cookit_app.utils.SharedPreferencesObject;
 import com.example.cookit_app.backend.Retrofit2Init;
+import com.example.cookit_app.utils.SharedPreferencesObject;
 
 import java.util.HashMap;
 
@@ -30,7 +30,26 @@ public class SignUpActivity extends AppCompatActivity {
 
     SharedPreferencesObject spo;
 
-    @RequiresApi(api = Build.VERSION_CODES.O) @Override
+    private boolean validateEmailAddress(EditText email) {
+        String emailInput = email.getText().toString();
+
+        if (emailInput.isEmpty()) {
+            email_et.setError("Field is empty");
+            email_et.requestFocus();
+            return false;
+        }
+        if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {
+            email_et.setError("email isn't correct");
+            email_et.requestFocus();
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+
+    @Override
+    @RequiresApi(api = Build.VERSION_CODES.O)
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
@@ -60,46 +79,46 @@ public class SignUpActivity extends AppCompatActivity {
             String confirmPassword = confirm_password_et.getText().toString();
             boolean correct = true;
 
-            if(name.trim().isEmpty()){
+            if (name.trim().isEmpty()) {
                 name_et.setError("Field is empty");
                 name_et.requestFocus();
                 correct = false;
             }
 
-            if(!validateEmailAddress(email_et)){
+            if (!validateEmailAddress(email_et)) {
                 correct = false;
             }
-            if(username.trim().isEmpty()){
+            if (username.trim().isEmpty()) {
                 username_et.setError("Field is empty");
                 username_et.requestFocus();
                 correct = false;
             }
-            if(password.trim().isEmpty()){
+            if (password.trim().isEmpty()) {
                 password_et.setError("Field is empty");
                 password_et.requestFocus();
                 correct = false;
             }
-            if(confirmPassword.trim().isEmpty()){
+            if (confirmPassword.trim().isEmpty()) {
                 confirm_password_et.setError("Field is empty");
                 confirm_password_et.requestFocus();
                 correct = false;
-            }else if (!confirmPassword.equals(password)){
+            } else if (!confirmPassword.equals(password)) {
                 confirm_password_et.setError("Incompatible passwords");
                 correct = false;
             }
 
-            if(correct){
+            if (correct) {
 
-                if(!username.isEmpty() && !password.isEmpty()){
+                if (!username.isEmpty() && !password.isEmpty()) {
 
-    //        try {
-    //            RSA encryption username, password and email
-    //            String encryptedUsername = Base64.getEncoder().encodeToString(RSA.encrypt(username, /*TODO ADD A REAL KEY*/"publicKey"));
-    //            Log.d("tesTag", encryptedUsername);
-    //            String encryptedPassword = Base64.getEncoder().encodeToString(RSA.encrypt(password, /*TODO ADD A REAL KEY*/"publicKey"));
-    //            Log.d("tesTag", encryptedPassword);
-    //            String encryptedEmail = Base64.getEncoder().encodeToString(RSA.encrypt(email, /*TODO ADD A REAL KEY*/"publicKey"));
-    //            Log.d("tesTag", encryptedEmail);
+                    //        try {
+                    //            RSA encryption username, password and email
+                    //            String encryptedUsername = Base64.getEncoder().encodeToString(RSA.encrypt(username, /*TODO ADD A REAL KEY*/"publicKey"));
+                    //            Log.d("tesTag", encryptedUsername);
+                    //            String encryptedPassword = Base64.getEncoder().encodeToString(RSA.encrypt(password, /*TODO ADD A REAL KEY*/"publicKey"));
+                    //            Log.d("tesTag", encryptedPassword);
+                    //            String encryptedEmail = Base64.getEncoder().encodeToString(RSA.encrypt(email, /*TODO ADD A REAL KEY*/"publicKey"));
+                    //            Log.d("tesTag", encryptedEmail);
 
                     //sending the request
                     HashMap<String, String> userData = new HashMap<>();
@@ -115,12 +134,12 @@ public class SignUpActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(Call<Void> call, Response<Void> response) {
                             progressBar.setVisibility(View.GONE);
-                            if(response.isSuccessful()){
+                            if (response.isSuccessful()) {
                                 Toast.makeText(getBaseContext(), "Signed up successfully.", Toast.LENGTH_SHORT).show();
                                 spo.getPreferences().edit().putBoolean(spo.isSignedUp, true).apply();
                                 spo.getPreferences().edit().putString(spo.username, username).apply(); // remember to save without RSA
-                            }else{
-                                Toast.makeText(getBaseContext(),response.code() + "\n" + response.message(), Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(getBaseContext(), response.code() + "\n" + response.message(), Toast.LENGTH_LONG).show();
                             }
                         }
 
@@ -138,29 +157,11 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
-        goToLogin.setOnClickListener(v->{
+        goToLogin.setOnClickListener(v -> {
             startActivity(new Intent(getBaseContext(), LoginActivity.class));
             finish();
         });
 
 
-    }
-
-    private boolean validateEmailAddress(EditText email){
-        String emailInput = email.getText().toString();
-
-        if(emailInput.isEmpty()){
-            email_et.setError("Field is empty");
-            email_et.requestFocus();
-            return false;
-        }
-        if(!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()){
-            email_et.setError("email isn't correct");
-            email_et.requestFocus();
-            return false;
-        }
-        else{
-            return true;
-        }
     }
 }

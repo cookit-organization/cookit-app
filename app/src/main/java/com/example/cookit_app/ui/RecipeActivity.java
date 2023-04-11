@@ -12,12 +12,13 @@ import com.example.cookit_app.backend.response.Recipe;
 
 public class RecipeActivity extends AppCompatActivity {
 
-    @SuppressLint("NonConstantResourceId") @Override
+    @SuppressLint("NonConstantResourceId")
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe);
 
-        Recipe recipe = (Recipe)getIntent().getSerializableExtra("recipe");
+        Recipe recipe = (Recipe) getIntent().getSerializableExtra("recipe");
 
         ImageView recipe_image = findViewById(R.id.recipe_image);
 //        recipe_image.setImageResource();

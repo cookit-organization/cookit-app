@@ -1,14 +1,16 @@
 package com.example.cookit_app.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+
 import com.example.cookit_app.R;
-import com.example.cookit_app.utils.SharedPreferencesObject;
 import com.example.cookit_app.ui.fragments.homepage_fragmets.Add;
 import com.example.cookit_app.ui.fragments.homepage_fragmets.Explore;
 import com.example.cookit_app.ui.fragments.homepage_fragmets.Home;
+import com.example.cookit_app.utils.SharedPreferencesObject;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {

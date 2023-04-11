@@ -9,9 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.cookit_app.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,15 +32,16 @@ public class RecyclerViewAdapterForAddComponents extends RecyclerView.Adapter<Re
         viewHolders = new ArrayList<>();
     }
 
-    public List<Component> getList(){
+    public List<Component> getList() {
         return list;
     }
 
-    public List<ViewHolder> getViewHolders(){
+    public List<ViewHolder> getViewHolders() {
         return viewHolders;
     }
 
-    @NonNull @Override
+    @NonNull
+    @Override
     public RecyclerViewAdapterForAddComponents.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.add_component_card, parent, false);
         ViewHolder holder = new RecyclerViewAdapterForAddComponents.ViewHolder(view);
@@ -45,7 +49,8 @@ public class RecyclerViewAdapterForAddComponents extends RecyclerView.Adapter<Re
         return holder;
     }
 
-    @SuppressLint("NotifyDataSetChanged") @Override
+    @SuppressLint("NotifyDataSetChanged")
+    @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Component component = list.get(position);
 
@@ -55,13 +60,13 @@ public class RecyclerViewAdapterForAddComponents extends RecyclerView.Adapter<Re
         onTextChanged(component, holder); // to make sure data is getting updated
 
         holder.remove.setOnClickListener(v -> {
-            if(list.size() == 1) return;
+            if (list.size() == 1) return;
             list.remove(position);
             notifyDataSetChanged();
         });
     }
 
-    private void onTextChanged(Component component, ViewHolder holder){
+    private void onTextChanged(Component component, ViewHolder holder) {
         holder.component_et.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -106,7 +111,7 @@ public class RecyclerViewAdapterForAddComponents extends RecyclerView.Adapter<Re
         return list.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public TextView component_et, amount_et;
         ImageButton remove;
@@ -114,11 +119,11 @@ public class RecyclerViewAdapterForAddComponents extends RecyclerView.Adapter<Re
         public ViewHolder(View itemView) {
             super(itemView);
 
-             component_et = itemView.findViewById(R.id.component_et);
-             amount_et = itemView.findViewById(R.id.amount_et);
-             remove = itemView.findViewById(R.id.remove_ib);
+            component_et = itemView.findViewById(R.id.component_et);
+            amount_et = itemView.findViewById(R.id.amount_et);
+            remove = itemView.findViewById(R.id.remove_ib);
 
-             itemView.setOnClickListener(this);
+            itemView.setOnClickListener(this);
         }
 
         @Override

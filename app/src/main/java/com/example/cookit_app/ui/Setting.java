@@ -9,13 +9,16 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.cookit_app.R;
 import com.example.cookit_app.utils.MultiSpinner;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.imageview.ShapeableImageView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,7 +68,7 @@ public class Setting extends AppCompatActivity {
 
             LinearLayout.LayoutParams tv1Params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             tv1Params.bottomMargin = 5;
-            layout.addView(tv1,tv1Params);
+            layout.addView(tv1, tv1Params);
 
             builder.setView(layout);
 
@@ -104,18 +107,18 @@ public class Setting extends AppCompatActivity {
 
             LinearLayout.LayoutParams tv1Params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             tv1Params.bottomMargin = 5;
-            layout.addView(tv1,tv1Params);
+            layout.addView(tv1, tv1Params);
             layout.addView(et, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
 
             builder.setView(layout);
 
             builder.setPositiveButton("yes", (dialogInterface, i) -> {
-                if (et.getText().toString().equals("1234")){
+                if (et.getText().toString().equals("1234")) {
                     //delete account
                     startActivity(new Intent(getBaseContext(), SignUpActivity.class));
                     finishAffinity();
-                }else{
-                    Toast.makeText(Setting.this, "wrong password" , Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(Setting.this, "wrong password", Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -127,11 +130,11 @@ public class Setting extends AppCompatActivity {
             dialog.show();
         });
 
-        imageProfile.setOnClickListener(v->{
+        imageProfile.setOnClickListener(v -> {
             Toast.makeText(this, "profile", Toast.LENGTH_SHORT).show();
         });
 
-        name.setOnClickListener(v->{
+        name.setOnClickListener(v -> {
             builder = new AlertDialog.Builder(Setting.this);
 
             LinearLayout layout = new LinearLayout(this);
@@ -153,7 +156,7 @@ public class Setting extends AppCompatActivity {
 
             LinearLayout.LayoutParams tv1Params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             tv1Params.bottomMargin = 5;
-            layout.addView(tv1,tv1Params);
+            layout.addView(tv1, tv1Params);
             layout.addView(et, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
 
             builder.setView(layout);
@@ -168,7 +171,7 @@ public class Setting extends AppCompatActivity {
             dialog.show();
         });
 
-        bio.setOnClickListener(v->{
+        bio.setOnClickListener(v -> {
             builder = new AlertDialog.Builder(Setting.this);
 
             LinearLayout layout = new LinearLayout(this);
@@ -190,7 +193,7 @@ public class Setting extends AppCompatActivity {
 
             LinearLayout.LayoutParams tv1Params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             tv1Params.bottomMargin = 5;
-            layout.addView(tv1,tv1Params);
+            layout.addView(tv1, tv1Params);
             layout.addView(et, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
 
             builder.setView(layout);
@@ -205,7 +208,7 @@ public class Setting extends AppCompatActivity {
             dialog.show();
         });
 
-        changePassword.setOnClickListener(v->{
+        changePassword.setOnClickListener(v -> {
             builder = new AlertDialog.Builder(Setting.this);
 
             LinearLayout layout = new LinearLayout(this);
@@ -238,7 +241,7 @@ public class Setting extends AppCompatActivity {
 
             LinearLayout.LayoutParams tv1Params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             tv1Params.bottomMargin = 5;
-            layout.addView(tv1,tv1Params);
+            layout.addView(tv1, tv1Params);
             layout.addView(currentPassword, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
             layout.addView(newPassword, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
 
@@ -247,11 +250,11 @@ public class Setting extends AppCompatActivity {
 
             builder.setPositiveButton("yes", (dialogInterface, i) -> {
                 //check if this current password
-                if (currentPassword1.getText().toString().equals("1234")){
+                if (currentPassword1.getText().toString().equals("1234")) {
                     //change password
-                    Toast.makeText(this, "password change to "+ newPassword1.getText().toString(), Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(Setting.this, "wrong password" , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "password change to " + newPassword1.getText().toString(), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(Setting.this, "wrong password", Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -265,7 +268,7 @@ public class Setting extends AppCompatActivity {
 
     }
 
-    private void createSpinners(){
+    private void createSpinners() {
 
         List<String> listTags = new ArrayList<>();
         listTags.add("meat");
@@ -277,7 +280,9 @@ public class Setting extends AppCompatActivity {
         listFavoriteCategories.add("Afternoon");
         listFavoriteCategories.add("Night");
 
-        tags.setItems(listTags, "disable tags", selected -> {});
-        favorite_categories.setItems(listFavoriteCategories, "favorite categories", selected -> {});
+        tags.setItems(listTags, "disable tags", selected -> {
+        });
+        favorite_categories.setItems(listFavoriteCategories, "favorite categories", selected -> {
+        });
     }
 }

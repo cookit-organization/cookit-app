@@ -6,7 +6,9 @@ import android.content.DialogInterface;
 import android.util.AttributeSet;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+
 import androidx.appcompat.app.AlertDialog;
+
 import java.util.List;
 
 @SuppressLint("AppCompatCustomView")
@@ -59,7 +61,7 @@ public class MultiSpinner extends Spinner implements DialogInterface.OnMultiChoi
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_spinner_item,
-                new String[] { spinnerText });
+                new String[]{spinnerText});
         setAdapter(adapter);
         listener.onItemsSelected(selected);
     }
@@ -87,7 +89,7 @@ public class MultiSpinner extends Spinner implements DialogInterface.OnMultiChoi
 
         // all text on the spinner
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
-                android.R.layout.simple_spinner_item, new String[] { allText });
+                android.R.layout.simple_spinner_item, new String[]{allText});
         setAdapter(adapter);
     }
 

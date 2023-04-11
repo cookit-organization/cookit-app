@@ -1,7 +1,5 @@
 package com.example.cookit_app.ui;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -10,9 +8,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.cookit_app.R;
-import com.example.cookit_app.utils.SharedPreferencesObject;
 import com.example.cookit_app.backend.Retrofit2Init;
+import com.example.cookit_app.utils.SharedPreferencesObject;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

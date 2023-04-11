@@ -1,7 +1,9 @@
 package com.example.cookit_app.utils;
 
 import android.os.Build;
+
 import androidx.annotation.RequiresApi;
+
 import java.security.InvalidKeyException;
 import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;
@@ -11,6 +13,7 @@ import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
+
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
@@ -31,7 +34,7 @@ public class RSA {
     //String encryptedString = Base64.getEncoder().encodeToString(encrypt("Dhiraj is the author", ""ADD A REAL publicKey""));
     //Log.d("TESTING",encryptedString);
 
-    public static PrivateKey getPrivateKey(String base64PrivateKey){
+    public static PrivateKey getPrivateKey(String base64PrivateKey) {
         PrivateKey privateKey = null;
         PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(Base64.getDecoder().decode(base64PrivateKey.getBytes()));
         KeyFactory keyFactory = null;
@@ -48,9 +51,9 @@ public class RSA {
         return privateKey;
     }
 
-    public static PublicKey getPublicKey(String base64PublicKey){
+    public static PublicKey getPublicKey(String base64PublicKey) {
         PublicKey publicKey;
-        try{
+        try {
             X509EncodedKeySpec keySpec = new X509EncodedKeySpec(Base64.getDecoder().decode(base64PublicKey.getBytes()));
             KeyFactory keyFactory = KeyFactory.getInstance("RSA");
             publicKey = keyFactory.generatePublic(keySpec);
